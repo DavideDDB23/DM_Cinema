@@ -1,0 +1,14 @@
+era,language_family,mean_rating,avg_votes,num_films
+Blockbuster Era,Sino-Tibetan,7.24,7365.0,51
+Blockbuster Era,Indo-European/Slavic,7.19,4829.0,187
+Blockbuster Era,Indo-European/Indo-Iranian,7.09,12407.0,65
+Blockbuster Era,Japonic,6.96,23064.0,179
+Blockbuster Era,Indo-European/Romance,6.46,11370.0,620
+Blockbuster Era,Indo-European/Germanic,6.11,45993.0,4887
+Modern,Koreanic,6.69,15427.0,290
+Modern,Japonic,6.68,13478.0,480
+Modern,Indo-European/Indo-Iranian,6.62,26609.0,303
+Modern,Sino-Tibetan,6.49,10081.0,186
+Modern,Indo-European/Romance,6.38,9886.0,1919
+Modern,Indo-European/Slavic,6.18,3728.0,470
+Modern,Indo-European/Germanic,6.02,58732.0,9879

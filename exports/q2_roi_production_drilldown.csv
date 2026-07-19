@@ -1,0 +1,770 @@
+production_level,continent,country_name,company_name,avg_roi_pct,avg_budget_m,total_revenue_b,num_films
+continent,Africa,,,76.3,35.9,1.49,28
+continent,Asia,,,288.8,27.5,28.31,348
+continent,Europe,,,205.9,33.5,108.67,1231
+continent,North America,,,270.1,37.9,457.16,4125
+continent,Oceania,,,204.3,53.8,19.29,133
+continent,Other,,,-86.1,7.7,0.0,1
+continent,South America,,,119.1,18.5,0.72,25
+country,Africa,Algeria,,58.4,14.5,0.02,1
+country,Africa,Botswana,,1100.0,5.0,0.06,1
+country,Africa,Mali,,-94.5,2.0,0.0,1
+country,Africa,Morocco,,26.8,62.9,0.43,5
+country,Africa,Namibia,,-73.8,16.0,0.0,1
+country,Africa,South Africa,,123.2,28.6,1.03,19
+country,Africa,Tunisia,,-81.5,49.0,0.03,3
+country,Asia,Cambodia,,115.6,40.0,0.09,1
+country,Asia,China,,370.4,48.7,10.33,70
+country,Asia,Hong Kong,,175.4,39.8,4.39,49
+country,Asia,India,,292.2,14.6,5.73,126
+country,Asia,Indonesia,,121.9,13.5,0.09,3
+country,Asia,Iran,,-3.4,11.0,0.01,1
+country,Asia,Israel,,110.8,4.8,0.03,5
+country,Asia,Japan,,284.4,32.2,7.54,78
+country,Asia,Kazakhstan,,47.4,18.0,0.03,1
+country,Asia,Malaysia,,295.7,18.7,0.07,1
+country,Asia,Pakistan,,102.9,45.5,0.23,2
+country,Asia,Philippines,,76.1,33.5,0.2,2
+country,Asia,Qatar,,-83.6,20.7,0.01,2
+country,Asia,Singapore,,228.2,37.2,0.2,3
+country,Asia,South Korea,,342.4,14.1,0.67,19
+country,Asia,Taiwan,,301.1,76.3,1.62,6
+country,Asia,Thailand,,1158.3,12.9,0.45,9
+country,Asia,Turkey,,225.7,10.0,0.05,5
+country,Asia,United Arab Emirates,,174.6,38.4,1.51,14
+country,Europe,Austria,,57.5,11.1,0.21,11
+country,Europe,Belgium,,24.6,19.0,1.14,39
+country,Europe,Bulgaria,,28.8,21.4,0.23,5
+country,Europe,Croatia,,-99.9,13.0,0.0,1
+country,Europe,Czech Republic,,55.5,69.2,3.53,25
+country,Europe,Denmark,,130.7,15.0,0.69,20
+country,Europe,Finland,,150.5,12.7,0.51,13
+country,Europe,France,,156.5,25.3,18.91,353
+country,Europe,Germany,,133.1,42.7,28.09,308
+country,Europe,Greece,,121.1,9.5,0.05,4
+country,Europe,Hungary,,64.2,40.7,0.87,11
+country,Europe,Iceland,,246.1,42.0,0.53,4
+country,Europe,Ireland,,168.1,23.1,1.71,39
+country,Europe,Italy,,116.9,27.7,4.71,97
+country,Europe,Liechtenstein,,-86.1,35.0,0.0,1
+country,Europe,Lithuania,,-60.5,15.0,0.01,1
+country,Europe,Luxembourg,,-10.8,21.0,0.2,12
+country,Europe,Malta,,199.2,135.0,2.11,5
+country,Europe,Monaco,,444.3,8.7,0.05,1
+country,Europe,Netherlands,,68.5,20.5,1.1,26
+country,Europe,Norway,,21.8,17.5,0.34,12
+country,Europe,Poland,,84.8,34.7,0.63,10
+country,Europe,Portugal,,-8.4,29.3,0.06,2
+country,Europe,Romania,,34.4,23.1,0.41,10
+country,Europe,Russia,,120.9,10.7,1.14,64
+country,Europe,Serbia,,22.0,15.0,0.03,2
+country,Europe,Slovenia,,86.5,225.0,0.42,1
+country,Europe,Spain,,152.5,26.5,3.1,70
+country,Europe,Sweden,,193.0,12.2,0.87,26
+country,Europe,Switzerland,,3.6,24.3,0.27,15
+country,Europe,Ukraine,,177.2,8.8,0.08,5
+country,Europe,United Kingdom,,259.4,38.5,71.4,620
+country,North America,Bahamas,,2467.2,5.5,0.14,1
+country,North America,Canada,,215.1,34.3,17.89,222
+country,North America,Costa Rica,,-84.7,47.0,0.01,1
+country,North America,Mexico,,241.5,21.5,1.16,25
+country,North America,Puerto Rico,,16.8,25.0,0.03,1
+country,North America,United States of America,,272.5,38.3,455.65,4063
+country,Oceania,Australia,,195.2,46.0,11.03,110
+country,Oceania,New Zealand,,274.8,86.0,8.79,27
+country,Other,Serbia and Montenegro,,-86.1,7.7,0.0,1
+country,South America,Argentina,,210.5,11.7,0.13,8
+country,South America,Brazil,,94.1,15.8,0.21,9
+country,South America,Chile,,29.6,8.7,0.05,5
+country,South America,Colombia,,-5.7,1.4,0.0,1
+country,South America,Ecuador,,0.0,1.9,0.0,1
+country,South America,Paraguay,,21.3,135.0,0.16,1
+country,South America,Peru,,241.4,45.0,0.31,2
+country,South America,Uruguay,,21.3,135.0,0.16,1
+country,South America,Venezuela,,-5.7,1.4,0.0,1
+company,Asia,China,China Film Co-Production Corporation,357.1,46.8,0.99,6
+company,Asia,China,Paramount Pictures,165.3,121.0,1.66,5
+company,Asia,India,Fox Searchlight Pictures,969.6,10.7,0.53,5
+company,Asia,India,Yash Raj Films,417.0,7.6,0.47,12
+company,Asia,India,Reliance Entertainment,265.8,58.8,1.36,9
+company,Asia,India,Eros International,257.5,9.1,0.21,6
+company,Asia,India,UTV Motion Pictures,228.1,12.9,0.32,10
+company,Asia,India,Dharma Productions,209.5,8.1,0.14,5
+company,Asia,India,Red Chillies Entertainment,154.5,13.0,0.25,7
+company,Asia,Japan,Studio Ghibli,485.6,28.0,1.23,9
+company,Asia,Japan,Universal Pictures,407.2,79.6,2.45,8
+company,Asia,Japan,Hakuhodo DY Media Partners,181.3,32.0,0.55,6
+company,Asia,Japan,Toho Company,112.0,28.7,0.8,9
+company,Asia,Japan,Twentieth Century Fox Film Corporation,62.3,24.5,0.14,5
+company,Asia,South Korea,CJ Entertainment,473.3,11.1,0.42,10
+company,Asia,United Arab Emirates,Imagenation Abu Dhabi FZ,189.3,30.0,0.76,11
+company,Asia,United Arab Emirates,Participant Media,173.9,26.7,0.49,9
+company,Europe,Belgium,uFilm,114.6,33.6,0.27,5
+company,Europe,Belgium,Le Tax Shelter du Gouvernement Fédéral de Belgique,54.1,28.8,0.21,6
+company,Europe,Belgium,Scope Pictures,44.0,29.5,0.34,5
+company,Europe,Belgium,Radio Télévision Belge Francophone (RTBF),24.7,7.2,0.05,5
+company,Europe,Belgium,Canal+,5.6,19.8,0.19,8
+company,Europe,Czech Republic,Stillking Films,121.9,92.8,1.96,9
+company,Europe,Denmark,Det Danske Filminstitut,232.0,8.1,0.15,5
+company,Europe,Denmark,Sveriges Television (SVT),159.0,9.6,0.17,7
+company,Europe,Denmark,Film i Väst,137.4,10.2,0.2,8
+company,Europe,Denmark,Danmarks Radio (DR),89.1,9.6,0.1,7
+company,Europe,Denmark,Zentropa Entertainments,67.3,8.4,0.11,9
+company,Europe,Denmark,Memfis Film,57.3,11.1,0.08,5
+company,Europe,Denmark,Arte France Cinéma,-1.4,11.8,0.06,5
+company,Europe,France,Why Not Productions,662.8,10.3,0.43,9
+company,Europe,France,M6 Films,408.1,38.4,1.13,7
+company,Europe,France,Focus Features,365.2,18.1,0.41,5
+company,Europe,France,Grive Productions,351.7,38.6,1.19,7
+company,Europe,France,Working Title Films,341.8,32.8,2.32,24
+company,Europe,France,Twentieth Century Fox Film Corporation,340.0,33.8,1.41,9
+company,Europe,France,Universal Pictures,337.6,37.3,2.89,31
+company,Europe,France,CinéCinéma,331.3,19.1,0.82,13
+company,Europe,France,Studio 37,308.5,18.6,0.18,5
+company,Europe,France,Impact Pictures,297.8,49.7,1.13,6
+company,Europe,France,TriStar Pictures,270.4,42.0,0.79,5
+company,Europe,France,M6,260.0,44.1,0.68,5
+company,Europe,France,StudioCanal,258.8,29.2,2.46,36
+company,Europe,France,TF1 Films Production,236.7,29.6,1.71,23
+company,Europe,France,Carolco Pictures,232.0,72.4,1.16,5
+company,Europe,France,France 3 Cinéma,226.8,29.8,0.58,11
+company,Europe,France,Gaumont,217.2,22.9,0.98,17
+company,Europe,France,Regency Enterprises,211.2,48.2,0.59,5
+company,Europe,France,Studio Canal,197.0,31.8,1.65,17
+company,Europe,France,Film4,196.5,13.2,0.26,9
+company,Europe,France,Constantin Film Produktion,186.6,43.0,0.88,7
+company,Europe,France,Columbia Pictures,183.4,61.0,1.49,7
+company,Europe,France,Miramax Films,166.7,36.0,0.39,5
+company,Europe,France,Canal+,165.7,24.2,5.77,86
+company,Europe,France,Wild Bunch,160.6,10.7,0.27,14
+company,Europe,France,Eurimages,150.2,11.1,0.12,8
+company,Europe,France,UK Film Council,140.8,12.5,0.17,6
+company,Europe,France,Relativity Media,139.9,35.3,0.85,12
+company,Europe,France,Canal Plus,139.2,34.3,0.6,9
+company,Europe,France,EuropaCorp,136.8,36.2,2.32,29
+company,Europe,France,Pathé Renn Productions,133.5,49.8,0.57,8
+company,Europe,France,Davis-Films,126.7,44.9,1.62,15
+company,Europe,France,uFilm,123.8,30.0,0.28,5
+company,Europe,France,TPS Star,120.4,23.6,0.43,8
+company,Europe,France,Warner Bros.,118.6,49.7,1.1,10
+company,Europe,France,Pathé,111.4,31.9,0.24,6
+company,Europe,France,Ciné+,101.1,18.4,1.07,18
+company,Europe,France,Anton Capital Entertainment (ACE),84.5,26.8,0.34,6
+company,Europe,France,Current Entertainment,70.2,27.8,0.25,5
+company,Europe,France,Liberator Productions,60.9,9.0,0.08,5
+company,Europe,France,Danmarks Radio (DR),57.3,11.1,0.08,5
+company,Europe,France,Memfis Film,57.3,11.1,0.08,5
+company,Europe,France,Film i Väst,52.1,12.2,0.13,8
+company,Europe,France,Zentropa Entertainments,38.4,9.1,0.09,7
+company,Europe,France,France 2 Cinéma,37.0,19.0,0.35,24
+company,Europe,France,Westdeutscher Rundfunk (WDR),25.4,13.4,0.07,5
+company,Europe,France,Radio Télévision Belge Francophone (RTBF),24.7,7.2,0.05,5
+company,Europe,France,Dino De Laurentiis Company,-3.4,53.4,0.27,5
+company,Europe,France,Scope Pictures,-5.5,8.7,0.04,5
+company,Europe,France,Arte France Cinéma,-28.4,9.5,0.06,7
+company,Europe,France,Centre National de la Cinématographie (CNC),-30.6,10.3,0.06,13
+company,Europe,France,France Télévisions,-43.3,16.8,0.06,6
+company,Europe,Germany,Arte,1002.1,7.5,0.19,5
+company,Europe,Germany,Fox Searchlight Pictures,666.7,12.2,0.32,5
+company,Europe,Germany,UK Film Council,522.2,12.0,0.24,6
+company,Europe,Germany,Filmstiftung Nordrhein-Westfalen,384.0,14.5,0.34,6
+company,Europe,Germany,France 3 Cinéma,367.3,41.2,0.4,5
+company,Europe,Germany,X-Filme Creative Pool,310.6,30.7,0.34,7
+company,Europe,Germany,Village Roadshow Pictures,285.3,74.2,1.18,5
+company,Europe,Germany,Lionsgate,263.1,45.6,0.96,7
+company,Europe,Germany,United Artists,250.8,20.8,0.28,5
+company,Europe,Germany,Working Title Films,223.5,43.0,0.62,6
+company,Europe,Germany,Warner Bros.,216.0,82.5,4.33,19
+company,Europe,Germany,Davis-Films,212.4,50.5,0.97,6
+company,Europe,Germany,Zweites Deutsches Fernsehen (ZDF),211.5,10.5,0.2,5
+company,Europe,Germany,Scott Rudin Productions,185.9,51.8,0.73,6
+company,Europe,Germany,Twentieth Century Fox Film Corporation,181.8,60.9,2.25,15
+company,Europe,Germany,Fox 2000 Pictures,181.2,44.3,0.68,6
+company,Europe,Germany,Constantin Film Produktion,173.8,41.6,1.67,15
+company,Europe,Germany,Impact Pictures,168.2,54.3,1.51,11
+company,Europe,Germany,Relativity Media,158.3,65.9,1.75,10
+company,Europe,Germany,New Line Cinema,155.5,35.4,1.38,16
+company,Europe,Germany,Columbia Pictures Corporation,154.8,82.4,1.24,7
+company,Europe,Germany,Film i Väst,148.0,13.3,0.28,8
+company,Europe,Germany,Studio Babelsberg,143.7,64.1,3.49,24
+company,Europe,Germany,Stillking Films,136.9,74.2,1.07,5
+company,Europe,Germany,Universal Pictures,135.6,72.0,5.3,31
+company,Europe,Germany,Westdeutscher Rundfunk (WDR),132.6,13.2,0.27,10
+company,Europe,Germany,Sveriges Television (SVT),128.5,10.6,0.15,6
+company,Europe,Germany,Regency Enterprises,126.3,42.8,0.75,8
+company,Europe,Germany,Canal+,122.1,21.9,0.68,16
+company,Europe,Germany,Medienboard Berlin-Brandenburg,121.7,36.4,0.41,5
+company,Europe,Germany,Silver Pictures,115.9,65.1,0.82,5
+company,Europe,Germany,Deutsche Filmförderfonds (DFFF),100.4,31.2,0.41,5
+company,Europe,Germany,Filmförderungsanstalt (FFA),92.3,15.0,0.28,7
+company,Europe,Germany,Metro-Goldwyn-Mayer (MGM),83.5,57.7,0.67,6
+company,Europe,Germany,Columbia Pictures,73.7,76.8,1.31,9
+company,Europe,Germany,Paramount Pictures,69.2,68.5,3.79,31
+company,Europe,Germany,Liberator Productions,60.9,9.0,0.08,5
+company,Europe,Germany,Memfis Film,57.3,11.1,0.08,5
+company,Europe,Germany,Danmarks Radio (DR),46.9,10.6,0.09,6
+company,Europe,Germany,Zentropa Entertainments,33.0,8.9,0.1,8
+company,Europe,Germany,IMF Internationale Medien und Film GmbH & Co. 3. Produktions KG,32.1,104.6,0.78,5
+company,Europe,Germany,Millennium Films,8.6,43.4,0.27,5
+company,Europe,Germany,Miramax Films,5.5,31.5,0.18,6
+company,Europe,Germany,Arte France Cinéma,-1.4,11.8,0.06,5
+company,Europe,Germany,Intermedia Films,-7.0,74.5,0.89,10
+company,Europe,Germany,Epsilon Motion Pictures,-7.3,43.4,0.16,6
+company,Europe,Germany,Rising Star,-20.4,31.0,0.19,6
+company,Europe,Germany,Franchise Pictures,-56.9,48.1,0.08,5
+company,Europe,Germany,Centre National de la Cinématographie (CNC),-72.8,15.0,0.03,6
+company,Europe,Ireland,Universal Pictures,427.3,25.7,0.71,6
+company,Europe,Ireland,Irish Film Board,132.9,9.5,0.18,9
+company,Europe,Italy,Cattleya,449.2,21.2,0.3,5
+company,Europe,Italy,Miramax Films,235.4,54.8,0.64,5
+company,Europe,Italy,Paramount Pictures,214.7,18.6,0.19,5
+company,Europe,Italy,Medusa Film,200.9,9.3,0.2,10
+company,Europe,Italy,BIM Distribuzione,155.9,11.3,0.15,5
+company,Europe,Italy,Canal+,87.1,27.5,0.6,11
+company,Europe,Italy,France 3 Cinéma,51.6,38.1,0.23,5
+company,Europe,Italy,Rai Cinema,40.4,17.0,0.13,6
+company,Europe,Italy,Zentropa Entertainments,12.3,9.3,0.07,6
+company,Europe,Italy,Indigo Film,-21.1,12.4,0.04,5
+company,Europe,Italy,France 2 Cinéma,-53.3,22.0,0.06,7
+company,Europe,Russia,Bazelevs Production,230.1,11.2,0.22,9
+company,Europe,Russia,Central Partnership,57.7,8.5,0.06,7
+company,Europe,Spain,Televisión Española (TVE),351.0,8.6,0.08,5
+company,Europe,Spain,Canal+ España,169.0,22.4,0.54,15
+company,Europe,Spain,Telecinco Cinema,108.8,27.9,0.26,5
+company,Europe,Spain,Canal+,19.9,37.1,0.27,7
+company,Europe,Spain,Instituto de la Cinematografía y de las Artes Audiovisuales (ICAA),18.3,26.9,0.26,7
+company,Europe,Sweden,Sveriges Television (SVT),240.1,8.3,0.22,9
+company,Europe,Sweden,Film i Väst,227.2,13.0,0.5,13
+company,Europe,Sweden,Danmarks Radio (DR),89.1,9.6,0.1,7
+company,Europe,Sweden,Zentropa Entertainments,67.3,8.4,0.11,9
+company,Europe,Sweden,Memfis Film,57.3,11.1,0.08,5
+company,Europe,United Kingdom,Danjaq,2050.2,36.4,1.73,8
+company,Europe,United Kingdom,Channel Four Films,1680.7,5.6,0.62,8
+company,Europe,United Kingdom,Eon Productions,1149.3,49.8,4.86,21
+company,Europe,United Kingdom,The Weinstein Company,884.0,31.4,1.05,6
+company,Europe,United Kingdom,United Artists,852.7,17.3,2.14,24
+company,Europe,United Kingdom,Twentieth Century Fox Film Corporation,782.3,75.3,9.68,34
+company,Europe,United Kingdom,Fox Searchlight Pictures,743.7,14.0,0.86,9
+company,Europe,United Kingdom,PolyGram Filmed Entertainment,617.2,36.3,1.59,12
+company,Europe,United Kingdom,Metro-Goldwyn-Mayer (MGM),508.7,36.2,1.31,11
+company,Europe,United Kingdom,Heyday Films,472.2,135.8,7.04,9
+company,Europe,United Kingdom,1492 Pictures,447.5,120.3,3.86,6
+company,Europe,United Kingdom,Working Title Films,425.3,31.1,5.29,46
+company,Europe,United Kingdom,Brandywine Productions,409.8,62.8,1.25,6
+company,Europe,United Kingdom,Walt Disney Pictures,400.9,114.8,3.51,6
+company,Europe,United Kingdom,Dune Entertainment,342.2,131.5,5.26,8
+company,Europe,United Kingdom,DNA Films,340.5,21.2,0.66,11
+company,Europe,United Kingdom,Big Talk Productions,338.2,24.2,0.5,6
+company,Europe,United Kingdom,UK Film Council,331.3,12.3,1.23,28
+company,Europe,United Kingdom,Miramax Films,331.0,26.0,1.34,17
+company,Europe,United Kingdom,Columbia Pictures Corporation,303.2,14.5,0.51,13
+company,Europe,United Kingdom,Warner Bros.,302.1,87.5,19.27,55
+company,Europe,United Kingdom,Syncopy,276.4,155.0,4.17,7
+company,Europe,United Kingdom,StudioCanal,262.2,34.5,2.8,29
+company,Europe,United Kingdom,Legendary Pictures,255.4,163.3,3.66,6
+company,Europe,United Kingdom,Columbia Pictures,245.9,71.9,5.04,23
+company,Europe,United Kingdom,Cross Creek Pictures,243.4,37.6,0.56,5
+company,Europe,United Kingdom,Film4,229.8,16.0,1.32,30
+company,Europe,United Kingdom,Universal Pictures,227.7,45.6,6.75,54
+company,Europe,United Kingdom,Pathé,226.8,19.8,0.65,10
+company,Europe,United Kingdom,TSG Entertainment,221.4,97.8,2.74,9
+company,Europe,United Kingdom,Relativity Media,220.0,50.9,2.96,20
+company,Europe,United Kingdom,Ingenious Media,215.6,44.2,1.07,7
+company,Europe,United Kingdom,BBC Films,213.5,17.2,1.18,35
+company,Europe,United Kingdom,Goldcrest Pictures,204.3,52.8,0.67,6
+company,Europe,United Kingdom,Studio Canal,195.4,33.1,1.56,15
+company,Europe,United Kingdom,Plan B Entertainment,195.1,63.0,1.27,7
+company,Europe,United Kingdom,Ingenious Film Partners,194.1,96.2,6.24,18
+company,Europe,United Kingdom,Revolution Sun Studios,185.3,128.8,2.0,5
+company,Europe,United Kingdom,DreamWorks SKG,181.4,73.7,1.41,7
+company,Europe,United Kingdom,Fox 2000 Pictures,173.4,66.0,1.08,5
+company,Europe,United Kingdom,Lionsgate,172.7,26.0,0.61,9
+company,Europe,United Kingdom,Touchstone Pictures,172.3,41.2,0.91,10
+company,Europe,United Kingdom,Moving Picture Company (MPC),158.7,109.5,2.27,6
+company,Europe,United Kingdom,Marv Films,155.7,34.8,0.78,7
+company,Europe,United Kingdom,Canal+,155.5,29.6,2.06,25
+company,Europe,United Kingdom,Studio Babelsberg,143.5,53.7,1.42,13
+company,Europe,United Kingdom,Silver Pictures,142.6,50.9,0.96,6
+company,Europe,United Kingdom,Focus Features,139.8,25.7,0.69,12
+company,Europe,United Kingdom,Filmgate Films,137.2,18.3,0.19,5
+company,Europe,United Kingdom,TF1 Films Production,133.2,40.7,0.88,9
+company,Europe,United Kingdom,Anton Capital Entertainment (ACE),125.5,30.9,0.6,7
+company,Europe,United Kingdom,Pathé Renn Productions,121.4,55.2,0.37,5
+company,Europe,United Kingdom,Summit Entertainment,119.6,55.9,0.6,5
+company,Europe,United Kingdom,Village Roadshow Pictures,119.0,82.3,1.43,6
+company,Europe,United Kingdom,Film i Väst,112.6,17.7,0.23,7
+company,Europe,United Kingdom,TriStar Pictures,110.3,37.0,0.54,7
+company,Europe,United Kingdom,Alliance Films,105.6,11.1,0.17,6
+company,Europe,United Kingdom,Constantin Film Produktion,102.6,50.0,0.73,7
+company,Europe,United Kingdom,Goldcrest Films International,102.0,17.9,0.21,9
+company,Europe,United Kingdom,Scion Films,93.3,27.8,0.71,13
+company,Europe,United Kingdom,Impact Pictures,80.4,47.4,0.81,9
+company,Europe,United Kingdom,Scott Free Productions,71.9,73.9,3.13,20
+company,Europe,United Kingdom,Intermedia Films,60.9,63.4,0.95,12
+company,Europe,United Kingdom,New Line Cinema,59.6,63.0,0.61,6
+company,Europe,United Kingdom,Davis-Films,54.1,36.5,0.35,6
+company,Europe,United Kingdom,Paramount Pictures,46.6,69.2,2.03,22
+company,Europe,United Kingdom,Ecosse Films,39.2,19.9,0.18,5
+company,Europe,United Kingdom,IMF Internationale Medien und Film GmbH & Co. 3. Produktions KG,32.1,104.6,0.78,5
+company,Europe,United Kingdom,Dino De Laurentiis Company,31.0,53.4,0.47,5
+company,Europe,United Kingdom,Fine Line Features,28.8,8.4,0.07,5
+company,Europe,United Kingdom,France 3 Cinéma,22.9,46.3,0.23,5
+company,Europe,United Kingdom,Epsilon Motion Pictures,22.8,45.2,0.25,5
+company,Europe,United Kingdom,Recorded Picture Company (RPC),22.1,9.9,0.05,5
+company,Europe,United Kingdom,GK Films,19.9,82.5,0.69,6
+company,Europe,United Kingdom,A24,10.9,12.1,0.05,5
+company,Europe,United Kingdom,France 2 Cinéma,9.3,19.0,0.12,6
+company,Europe,United Kingdom,IM Global,-1.6,14.2,0.09,7
+company,Europe,United Kingdom,Number 9 Films,-8.3,19.0,0.07,5
+company,Europe,United Kingdom,Toho-Towa,-15.2,78.4,0.37,5
+company,Europe,United Kingdom,Lipsync Productions,-41.2,11.7,0.04,6
+company,North America,Canada,Gold Circle Films,1431.3,9.3,0.58,6
+company,North America,Canada,Alliance Films,973.5,9.8,0.26,7
+company,North America,Canada,New Line Cinema,401.8,41.7,1.18,6
+company,North America,Canada,Province of British Columbia Production Services Tax Credit,330.9,18.7,0.46,6
+company,North America,Canada,Impact Pictures,280.7,69.0,1.03,5
+company,North America,Canada,Lionsgate,258.2,32.5,0.88,10
+company,North America,Canada,Walt Disney Pictures,236.0,36.8,0.31,5
+company,North America,Canada,Dune Entertainment,212.6,85.1,1.88,8
+company,North America,Canada,Davis-Films,208.2,45.0,0.75,5
+company,North America,Canada,Columbia Pictures,207.2,84.2,1.42,6
+company,North America,Canada,Universal Pictures,181.1,38.8,1.65,18
+company,North America,Canada,Canadian Film or Video Production Tax Credit (CPTC),173.7,19.5,0.38,7
+company,North America,Canada,Twentieth Century Fox Film Corporation,134.8,72.1,1.97,12
+company,North America,Canada,Legendary Pictures,130.7,134.2,2.04,6
+company,North America,Canada,TriStar Pictures,127.3,40.1,0.52,7
+company,North America,Canada,Warner Bros.,123.7,64.0,2.56,15
+company,North America,Canada,Dune Entertainment III,115.4,54.2,0.66,5
+company,North America,Canada,Metro-Goldwyn-Mayer (MGM),104.3,37.8,0.35,5
+company,North America,Canada,Paramount Pictures,82.2,69.1,1.55,11
+company,North America,Canada,Lions Gate Films,78.8,10.1,0.18,9
+company,North America,Canada,New Regency Pictures,73.1,80.6,0.86,5
+company,North America,Canada,Téléfilm Canada,22.1,18.2,0.2,10
+company,North America,Canada,Morgan Creek Productions,10.5,35.9,0.21,5
+company,North America,Canada,Canal+,2.0,16.3,0.1,5
+company,North America,Canada,Epsilon Motion Pictures,-41.4,45.4,0.15,5
+company,North America,United States of America,RKO Radio Pictures,3897.3,2.5,1.05,9
+company,North America,United States of America,Walt Disney Productions,3460.5,7.1,1.89,18
+company,North America,United States of America,Evolution Entertainment,2803.3,14.2,0.55,5
+company,North America,United States of America,Twisted Pictures,2147.6,10.9,0.9,8
+company,North America,United States of America,Danjaq,1724.3,47.0,1.49,6
+company,North America,United States of America,Blumhouse Productions,1656.6,5.4,2.23,25
+company,North America,United States of America,Home Box Office (HBO),1617.1,38.4,1.1,5
+company,North America,United States of America,Alliance Films,1393.6,6.6,0.27,7
+company,North America,United States of America,Stage 6 Films,1167.3,7.9,0.42,8
+company,North America,United States of America,Why Not Productions,1029.0,12.2,0.37,5
+company,North America,United States of America,Lucasfilm,1027.7,65.8,9.74,20
+company,North America,United States of America,Gold Circle Films,1019.5,14.8,1.07,10
+company,North America,United States of America,The Safran Company,973.8,10.2,0.95,8
+company,North America,United States of America,Illumination Entertainment,958.9,74.1,5.55,7
+company,North America,United States of America,Eon Productions,944.7,57.1,4.5,18
+company,North America,United States of America,Wayans Bros. Entertainment,829.4,33.5,0.69,5
+company,North America,United States of America,Fuji Television Network,785.9,95.0,5.78,8
+company,North America,United States of America,Temple Hill Entertainment,760.2,57.2,4.68,11
+company,North America,United States of America,Playtone,748.4,64.0,2.17,12
+company,North America,United States of America,Smart Egg Pictures,694.6,3.8,0.11,5
+company,North America,United States of America,Platinum Dunes,694.0,54.6,4.33,17
+company,North America,United States of America,Blinding Edge Pictures,688.9,70.7,2.06,9
+company,North America,United States of America,Hughes Entertainment,678.2,23.3,1.23,8
+company,North America,United States of America,Maverick Films,665.8,41.8,1.89,5
+company,North America,United States of America,Silver Screen Partners IV,661.9,19.9,1.47,11
+company,North America,United States of America,Lions Gate Films,651.6,15.1,1.91,33
+company,North America,United States of America,Cannon Films,648.5,5.8,0.1,5
+company,North America,United States of America,A Band Apart,647.3,26.8,0.9,6
+company,North America,United States of America,IM Global,625.5,14.6,0.45,18
+company,North America,United States of America,Strike Entertainment,619.1,55.1,0.77,7
+company,North America,United States of America,LD Entertainment,591.3,14.6,0.27,6
+company,North America,United States of America,Good Universe,582.2,24.3,0.73,6
+company,North America,United States of America,Zide-Perry Productions,575.2,32.9,1.11,7
+company,North America,United States of America,United Artists,574.8,16.8,5.18,77
+company,North America,United States of America,Hasbro Studios,539.7,139.3,4.47,7
+company,North America,United States of America,Affirm Films,532.2,12.2,0.2,5
+company,North America,United States of America,Protozoa Pictures,525.9,33.1,0.76,6
+company,North America,United States of America,Amblin Entertainment,520.3,65.3,16.96,57
+company,North America,United States of America,Ghost House Pictures,513.1,18.8,0.93,11
+company,North America,United States of America,Newmarket Capital Group,489.7,17.0,0.57,7
+company,North America,United States of America,UK Film Council,480.3,18.3,0.25,6
+company,North America,United States of America,Heyday Films,479.8,135.5,7.63,10
+company,North America,United States of America,The Ladd Company,474.5,32.2,0.48,7
+company,North America,United States of America,Silver Screen Partners II,465.0,13.8,0.19,6
+company,North America,United States of America,Sunswept Entertainment,459.5,68.5,4.06,11
+company,North America,United States of America,Green Hat Films,459.4,55.8,1.47,6
+company,North America,United States of America,RatPac-Dune Entertainment,451.6,91.8,5.06,17
+company,North America,United States of America,Blue Sky Studios,446.5,89.2,5.27,11
+company,North America,United States of America,WingNut Films,442.8,134.4,7.11,11
+company,North America,United States of America,STX Entertainment,429.7,15.6,0.38,6
+company,North America,United States of America,Fox Searchlight Pictures,429.4,12.2,2.67,49
+company,North America,United States of America,Point Grey Pictures,428.8,28.8,0.71,6
+company,North America,United States of America,Tig Productions,424.7,41.5,1.02,8
+company,North America,United States of America,Rainforest Films,421.1,18.9,0.44,5
+company,North America,United States of America,SLM Production Group,418.4,17.8,0.65,9
+company,North America,United States of America,Don Simpson/Jerry Bruckheimer Films,409.3,52.6,1.38,7
+company,North America,United States of America,Twentieth Century Fox Animation,408.3,83.2,5.57,13
+company,North America,United States of America,Twentieth Century Fox Film Corporation,406.0,44.8,45.33,285
+company,North America,United States of America,Cross Creek Pictures,405.3,28.5,0.99,9
+company,North America,United States of America,Tapestry Films,401.6,23.3,0.71,7
+company,North America,United States of America,Color Force,396.8,72.1,3.2,8
+company,North America,United States of America,Barry Mendel Productions,381.9,47.8,1.11,5
+company,North America,United States of America,Pixar Animation Studios,381.0,148.7,11.19,18
+company,North America,United States of America,China Film Co-Production Corporation,379.4,77.4,1.21,5
+company,North America,United States of America,Lawrence Bender Productions,376.1,36.2,0.46,6
+company,North America,United States of America,Bedford Falls Productions,373.8,48.0,0.81,5
+company,North America,United States of America,Mirage Enterprises,373.7,30.8,1.65,14
+company,North America,United States of America,Media Rights Capital,369.2,40.1,2.03,14
+company,North America,United States of America,Mace Neufeld Productions,369.1,53.4,1.48,11
+company,North America,United States of America,APJAC Productions,364.7,6.2,0.08,5
+company,North America,United States of America,Pacific Data Images (PDI),364.5,99.4,3.38,8
+company,North America,United States of America,The Zanuck Company,363.3,80.4,1.43,7
+company,North America,United States of America,Paramount Pictures,362.7,47.7,46.7,319
+company,North America,United States of America,The Kennedy/Marshall Company,361.6,76.2,2.67,9
+company,North America,United States of America,Automatik Entertainment,353.7,13.4,0.21,9
+company,North America,United States of America,Dentsu,352.2,92.6,6.76,14
+company,North America,United States of America,Lightstorm Entertainment,351.4,115.9,5.66,7
+company,North America,United States of America,TSG Entertainment,345.1,74.4,9.92,36
+company,North America,United States of America,Jersey Films,341.9,26.8,1.18,15
+company,North America,United States of America,Icon Productions,340.2,38.0,1.05,7
+company,North America,United States of America,Universal Pictures,338.3,44.8,51.8,361
+company,North America,United States of America,The Saul Zaentz Company,338.2,55.0,1.82,5
+company,North America,United States of America,MTV Films,335.3,26.1,1.2,15
+company,North America,United States of America,Marvel Entertainment,334.4,139.4,4.53,9
+company,North America,United States of America,Mike Zoss Productions,329.6,30.7,0.87,7
+company,North America,United States of America,Genre Films,326.9,84.0,1.87,6
+company,North America,United States of America,Brandywine Productions,324.3,60.8,1.46,8
+company,North America,United States of America,Josephson Entertainment,323.1,40.9,0.72,5
+company,North America,United States of America,Walt Disney Animation Studios,320.5,130.8,6.05,13
+company,North America,United States of America,Universal Studios,319.7,53.6,3.08,11
+company,North America,United States of America,Mandate Pictures,319.6,19.3,0.8,14
+company,North America,United States of America,Walt Disney,315.0,84.2,1.46,6
+company,North America,United States of America,Sony Pictures Releasing,312.0,56.9,1.25,8
+company,North America,United States of America,Offspring Entertainment,311.6,34.6,0.76,8
+company,North America,United States of America,Marvel Studios,310.8,182.3,11.68,15
+company,North America,United States of America,Orion Pictures,309.1,14.8,1.62,36
+company,North America,United States of America,Detour Filmproduction,307.0,9.5,0.15,5
+company,North America,United States of America,Malpaso Productions,304.3,35.8,2.87,23
+company,North America,United States of America,Working Title Films,302.0,31.3,4.6,41
+company,North America,United States of America,Walt Disney Pictures,301.7,94.7,39.95,129
+company,North America,United States of America,Walt Disney Studios Motion Pictures,300.9,136.6,3.07,5
+company,North America,United States of America,Walt Disney Feature Animation,298.9,92.3,3.1,11
+company,North America,United States of America,Vertigo Entertainment,294.7,38.3,2.4,21
+company,North America,United States of America,One Race Films,293.8,144.0,3.35,5
+company,North America,United States of America,Bad Robot,293.3,102.1,5.28,12
+company,North America,United States of America,Open Road Films,290.0,26.3,0.44,10
+company,North America,United States of America,Bona Fide Productions,288.4,28.8,0.36,5
+company,North America,United States of America,Marc Platt Productions,287.5,38.2,2.02,15
+company,North America,United States of America,Konrad Pictures,286.3,29.7,0.69,6
+company,North America,United States of America,New Line Cinema,285.7,38.1,21.55,168
+company,North America,United States of America,Film4,281.5,20.3,0.97,16
+company,North America,United States of America,Screen Gems,280.8,22.9,2.52,38
+company,North America,United States of America,Intrepid Pictures,278.4,13.8,0.23,7
+company,North America,United States of America,Jerry Weintraub Productions,277.0,66.9,2.22,11
+company,North America,United States of America,River Road Entertainment,276.8,21.6,0.55,8
+company,North America,United States of America,Sony Pictures Classics,274.5,10.8,0.32,8
+company,North America,United States of America,Studio Canal,273.8,32.5,1.53,12
+company,North America,United States of America,Avery Pix,273.6,32.6,0.64,5
+company,North America,United States of America,Cube Vision,271.6,25.8,0.63,6
+company,North America,United States of America,Syncopy,271.5,152.8,5.36,9
+company,North America,United States of America,Plan B Entertainment,270.1,47.9,2.16,15
+company,North America,United States of America,Bold Films,269.8,9.0,0.26,8
+company,North America,United States of America,Gravier Productions,267.7,19.7,0.43,6
+company,North America,United States of America,Thunder Road Pictures,267.1,73.8,1.52,10
+company,North America,United States of America,Gracie Films,267.0,47.7,1.44,9
+company,North America,United States of America,Fox 2000 Pictures,264.9,42.8,6.37,46
+company,North America,United States of America,Virgin Produced,264.2,30.2,0.47,5
+company,North America,United States of America,Centropolis Entertainment,262.5,106.9,3.78,10
+company,North America,United States of America,Dune Entertainment,258.8,72.5,14.82,59
+company,North America,United States of America,Revolution Sun Studios,256.9,154.2,8.12,14
+company,North America,United States of America,DreamWorks Animation,255.1,118.5,13.48,33
+company,North America,United States of America,Chernin Entertainment,254.6,74.5,3.37,14
+company,North America,United States of America,FilmColony,254.2,19.8,0.41,6
+company,North America,United States of America,The Mirisch Corporation,253.9,5.4,0.08,5
+company,North America,United States of America,Overbrook Entertainment,253.3,75.9,3.37,13
+company,North America,United States of America,Province of British Columbia Production Services Tax Credit,251.4,38.3,0.83,8
+company,North America,United States of America,Summit Entertainment,251.0,46.8,8.43,55
+company,North America,United States of America,Apatow Productions,250.0,38.5,2.1,19
+company,North America,United States of America,Columbia Pictures Corporation,249.8,41.0,10.52,106
+company,North America,United States of America,Lionsgate,249.8,34.0,6.22,61
+company,North America,United States of America,StudioCanal,247.8,31.3,2.06,28
+company,North America,United States of America,Sony Pictures Animation,247.5,76.0,3.04,12
+company,North America,United States of America,Parkes/MacDonald Productions,247.4,89.7,1.82,7
+company,North America,United States of America,Warner Bros.,246.7,56.2,60.83,392
+company,North America,United States of America,American Zoetrope,246.0,28.1,1.11,19
+company,North America,United States of America,Metro-Goldwyn-Mayer (MGM),244.4,31.8,11.55,147
+company,North America,United States of America,Wintergreen Productions,243.0,61.2,1.3,7
+company,North America,United States of America,The Montecito Picture Company,242.0,24.3,0.47,6
+company,North America,United States of America,One Race Productions,240.0,84.2,1.88,5
+company,North America,United States of America,Rogue Pictures,239.4,18.3,0.52,10
+company,North America,United States of America,Canadian Film or Video Production Tax Credit (CPTC),239.2,19.6,0.32,5
+company,North America,United States of America,BenderSpink,236.4,36.0,1.4,12
+company,North America,United States of America,Parkes+MacDonald Image Nation,234.2,72.9,1.92,8
+company,North America,United States of America,1492 Pictures,231.4,92.2,5.4,16
+company,North America,United States of America,Endgame Entertainment,231.3,20.8,0.45,14
+company,North America,United States of America,Legendary Pictures,230.6,112.4,13.44,39
+company,North America,United States of America,Focus Features,230.5,21.9,2.33,34
+company,North America,United States of America,Atlas Entertainment,228.3,96.4,4.76,15
+company,North America,United States of America,Major Studio Partners,227.3,69.0,1.25,7
+company,North America,United States of America,Mosaic Media Group,224.5,56.3,1.57,11
+company,North America,United States of America,Radar Pictures,224.5,43.8,1.22,12
+company,North America,United States of America,DNA Films,224.4,32.2,0.38,5
+company,North America,United States of America,Hasbro,221.8,105.8,1.06,5
+company,North America,United States of America,Laura Ziskin Productions,221.5,166.6,2.62,5
+company,North America,United States of America,Perdido Productions,219.1,18.0,0.33,6
+company,North America,United States of America,Gary Sanchez Productions,217.6,42.2,1.16,9
+company,North America,United States of America,Lin Pictures,216.4,62.3,1.29,6
+company,North America,United States of America,Cannon Group,215.3,10.9,0.11,8
+company,North America,United States of America,Sean S. Cunningham Films,213.3,12.8,0.19,5
+company,North America,United States of America,DreamWorks SKG,212.9,66.0,15.18,75
+company,North America,United States of America,DreamWorks,212.7,50.4,0.94,7
+company,North America,United States of America,Miramax Films,212.7,23.8,5.15,81
+company,North America,United States of America,Michael De Luca Productions,211.0,55.9,1.41,9
+company,North America,United States of America,Pacific Western,210.9,52.7,0.96,8
+company,North America,United States of America,Atmosphere Entertainment MM,210.0,57.0,1.23,7
+company,North America,United States of America,Reliance Entertainment,208.5,66.9,2.25,14
+company,North America,United States of America,Good Machine,208.4,26.1,0.68,10
+company,North America,United States of America,QED International,208.2,36.9,0.86,8
+company,North America,United States of America,The Weinstein Company,207.9,32.1,2.52,31
+company,North America,United States of America,"Montecito Picture Company, The",206.6,58.8,0.8,6
+company,North America,United States of America,Exclusive Media Group,202.6,15.5,0.33,11
+company,North America,United States of America,Roth Films,202.3,131.3,3.35,9
+company,North America,United States of America,Smokehouse Pictures,202.2,35.6,0.74,8
+company,North America,United States of America,Team Todd,202.1,82.8,1.72,6
+company,North America,United States of America,Yari Film Group,201.0,16.1,0.2,7
+company,North America,United States of America,Dimension Films,200.5,25.9,3.62,49
+company,North America,United States of America,Silver Pictures,199.9,56.7,6.04,41
+company,North America,United States of America,TriStar Pictures,198.5,33.1,7.47,85
+company,North America,United States of America,Touchstone Pictures,197.6,42.7,12.8,127
+company,North America,United States of America,Original Film,196.3,86.1,9.03,34
+company,North America,United States of America,Big Screen Productions,193.3,93.9,3.84,14
+company,North America,United States of America,"Zanuck Company, The",192.6,110.0,1.85,5
+company,North America,United States of America,Cruel and Unusual Films,192.0,102.9,1.94,7
+company,North America,United States of America,Skydance Productions,186.5,102.8,3.43,11
+company,North America,United States of America,Columbia Pictures,185.2,59.0,30.84,197
+company,North America,United States of America,Dune Entertainment III,184.9,51.5,3.55,27
+company,North America,United States of America,PolyGram Filmed Entertainment,184.7,30.9,1.87,25
+company,North America,United States of America,Mid Atlantic Films,184.5,96.0,1.81,7
+company,North America,United States of America,Big Beach Films,184.0,8.7,0.16,7
+company,North America,United States of America,Ingenious Film Partners,181.0,109.2,7.91,21
+company,North America,United States of America,Wildwood Enterprises,180.7,40.9,0.47,7
+company,North America,United States of America,Sony Pictures Entertainment,179.9,58.1,0.93,8
+company,North America,United States of America,Brooksfilms,179.5,15.2,0.16,5
+company,North America,United States of America,Firm Films,179.4,50.6,0.73,7
+company,North America,United States of America,Constantin Film Produktion,178.6,50.1,1.47,11
+company,North America,United States of America,Scott Rudin Productions,178.2,39.6,3.8,36
+company,North America,United States of America,21 Laps Entertainment,176.7,60.9,2.67,15
+company,North America,United States of America,Alcor Films,176.6,31.4,0.56,7
+company,North America,United States of America,DC Entertainment,176.6,126.4,6.21,14
+company,North America,United States of America,Bad Hat Harry Productions,175.6,149.9,4.41,12
+company,North America,United States of America,Bazelevs Production,175.4,37.8,0.48,5
+company,North America,United States of America,Ingenious Media,175.4,63.5,3.88,19
+company,North America,United States of America,Goldcrest Pictures,174.6,53.3,1.2,9
+company,North America,United States of America,Walden Media,173.7,74.1,3.38,18
+company,North America,United States of America,Paramount Vantage,173.1,20.8,0.63,11
+company,North America,United States of America,Flower Films (II),171.9,49.3,0.93,7
+company,North America,United States of America,Marvel Enterprises,171.6,112.9,6.54,19
+company,North America,United States of America,Relativity Media,171.1,52.1,14.6,113
+company,North America,United States of America,Gunn Films,170.4,56.2,0.7,5
+company,North America,United States of America,Caravan Pictures,170.3,37.1,0.59,8
+company,North America,United States of America,Jerry Bruckheimer Films,169.9,133.7,8.96,24
+company,North America,United States of America,Donners' Company,169.1,111.7,4.71,15
+company,North America,United States of America,Gordon Company,168.6,56.5,0.76,6
+company,North America,United States of America,Carolco Pictures,168.3,44.6,2.04,15
+company,North America,United States of America,Robert Simonds Productions,167.3,32.8,0.98,13
+company,North America,United States of America,Canal+,165.1,33.4,3.18,28
+company,North America,United States of America,Sony Pictures,164.8,19.9,0.35,9
+company,North America,United States of America,Karz Entertainment,164.7,28.3,0.44,5
+company,North America,United States of America,Happy Madison Productions,163.7,59.2,3.72,25
+company,North America,United States of America,Appian Way,163.1,72.6,1.8,10
+company,North America,United States of America,Brightlight Pictures,163.0,21.4,0.17,5
+company,North America,United States of America,Di Bonaventura Pictures,162.6,102.1,6.43,20
+company,North America,United States of America,LStar Capital,162.2,56.1,2.4,17
+company,North America,United States of America,Grindstone Entertainment Group,162.1,16.7,0.28,6
+company,North America,United States of America,Marv Films,162.1,52.9,0.97,7
+company,North America,United States of America,Tribeca Productions,161.6,59.5,2.04,13
+company,North America,United States of America,"Kennedy/Marshall Company, The",161.5,85.2,3.03,14
+company,North America,United States of America,Dark Horse Entertainment,160.9,70.5,1.3,11
+company,North America,United States of America,Davis Entertainment,158.0,52.6,4.22,35
+company,North America,United States of America,Annapurna Pictures,156.2,37.6,1.25,12
+company,North America,United States of America,EuropaCorp,155.0,27.9,1.1,14
+company,North America,United States of America,Regency Enterprises,154.4,46.3,8.4,71
+company,North America,United States of America,Tim Burton Productions,153.0,86.0,3.7,16
+company,North America,United States of America,Section Eight,152.8,62.1,1.48,8
+company,North America,United States of America,HBO Films,152.5,33.2,0.42,5
+company,North America,United States of America,Mandeville Films,151.9,57.8,2.54,13
+company,North America,United States of America,Imagenation Abu Dhabi FZ,151.6,40.0,1.44,15
+company,North America,United States of America,Red Hour Films,150.5,49.0,0.97,9
+company,North America,United States of America,Alcon Entertainment,150.0,45.0,1.78,19
+company,North America,United States of America,Participant Media,147.0,31.4,1.64,26
+company,North America,United States of America,Red Wagon Entertainment,146.7,82.9,1.94,9
+company,North America,United States of America,Double Feature Films,146.0,29.9,0.91,14
+company,North America,United States of America,DC Comics,145.9,97.6,4.62,16
+company,North America,United States of America,Donner/Shuler-Donner Productions,145.8,64.0,0.61,5
+company,North America,United States of America,Kontsept Film Company,145.4,126.0,1.72,5
+company,North America,United States of America,Wonderland Sound and Vision,145.0,71.8,0.8,6
+company,North America,United States of America,Emmett/Furla Films,144.8,32.3,1.12,17
+company,North America,United States of America,Killer Films,144.4,9.5,0.11,8
+company,North America,United States of America,Escape Artists,143.9,49.3,1.7,14
+company,North America,United States of America,CBS Films,143.1,21.2,0.56,13
+company,North America,United States of America,Nickelodeon Movies,142.2,74.3,3.05,18
+company,North America,United States of America,Mandalay Vision,142.1,11.7,0.05,5
+company,North America,United States of America,ImageMovers,142.0,93.0,2.26,11
+company,North America,United States of America,Troublemaker Studios,141.2,38.0,0.7,8
+company,North America,United States of America,Alphaville Films,140.8,54.1,1.79,11
+company,North America,United States of America,Cruise/Wagner Productions,140.8,71.6,3.03,13
+company,North America,United States of America,Studio Babelsberg,140.8,77.5,4.34,22
+company,North America,United States of America,Sony Pictures Entertainment (SPE),140.6,55.9,1.49,11
+company,North America,United States of America,Craven-Maddalena Films,140.3,28.6,0.32,5
+company,North America,United States of America,Imagine Entertainment,139.1,60.8,6.0,43
+company,North America,United States of America,Spyglass Entertainment,139.1,61.1,4.9,36
+company,North America,United States of America,Mandalay Entertainment,138.7,44.2,0.41,6
+company,North America,United States of America,Castle Rock Entertainment,136.5,33.4,2.4,35
+company,North America,United States of America,De Line Pictures,136.3,68.0,1.26,10
+company,North America,United States of America,Weed Road Pictures,132.2,87.0,2.53,11
+company,North America,United States of America,Village Roadshow Pictures,131.6,72.8,14.66,86
+company,North America,United States of America,New Regency Pictures,131.3,45.6,4.45,42
+company,North America,United States of America,Outlaw Productions (I),129.2,27.7,0.28,6
+company,North America,United States of America,Davis-Films,127.0,46.5,1.31,11
+company,North America,United States of America,Radiant Productions,126.7,128.0,1.41,5
+company,North America,United States of America,Moving Picture Company (MPC),126.6,152.8,5.2,13
+company,North America,United States of America,Gaumont,124.0,20.7,0.23,7
+company,North America,United States of America,Baltimore Pictures,123.2,43.6,0.74,8
+company,North America,United States of America,A24,121.6,9.3,0.13,12
+company,North America,United States of America,Lawrence Gordon Productions,121.6,62.7,1.17,10
+company,North America,United States of America,The Mark Gordon Company,121.0,49.8,1.07,7
+company,North America,United States of America,Warner Independent Pictures (WIP),120.2,13.2,0.14,8
+company,North America,United States of America,Gran Via Productions,118.7,33.3,0.39,6
+company,North America,United States of America,View Askew Productions,118.6,17.0,0.17,6
+company,North America,United States of America,Kopelson Entertainment,117.8,61.0,0.94,7
+company,North America,United States of America,Hollywood Pictures,117.0,31.3,2.45,37
+company,North America,United States of America,Bluegrass Films,116.1,65.9,1.15,8
+company,North America,United States of America,Lakeshore Entertainment,115.0,31.9,2.16,32
+company,North America,United States of America,WWE Studios,114.7,24.8,0.3,9
+company,North America,United States of America,Warner Bros. Animation,112.7,48.7,1.3,11
+company,North America,United States of America,Stuber Productions,111.7,58.6,0.68,7
+company,North America,United States of America,Anonymous Content,110.6,30.3,1.29,18
+company,North America,United States of America,Edward R. Pressman Film,109.8,23.4,0.3,7
+company,North America,United States of America,Indian Paintbrush,108.7,18.5,0.36,8
+company,North America,United States of America,Beacon Communications,107.2,61.4,0.93,7
+company,North America,United States of America,Conundrum Entertainment,106.8,52.8,0.58,6
+company,North America,United States of America,Paramount Animation,106.8,72.9,0.99,7
+company,North America,United States of America,NPV Entertainment,105.2,64.6,3.09,22
+company,North America,United States of America,FilmNation Entertainment,105.0,19.3,0.7,16
+company,North America,United States of America,Revolution Studios,104.8,51.4,3.12,31
+company,North America,United States of America,Virtual Studios,104.6,74.9,1.04,7
+company,North America,United States of America,Stillking Films,104.0,88.1,2.0,10
+company,North America,United States of America,Wild West Picture Show Productions,103.2,66.0,0.65,5
+company,North America,United States of America,Global Entertainment Productions GmbH & Company Medien KG,103.0,72.0,0.75,5
+company,North America,United States of America,Miramax,102.7,35.5,0.85,11
+company,North America,United States of America,FilmDistrict,102.6,36.1,0.47,9
+company,North America,United States of America,Hyde Park Films,101.9,24.6,0.29,7
+company,North America,United States of America,GK Films,100.9,88.0,2.23,13
+company,North America,United States of America,Handsomecharlie Films,100.1,23.0,0.27,5
+company,North America,United States of America,This Is That Productions,99.5,14.5,0.22,6
+company,North America,United States of America,Nomura Babcock & Brown,98.7,22.8,0.14,5
+company,North America,United States of America,Impact Pictures,97.4,59.9,1.22,11
+company,North America,United States of America,American Entertainment Partners L.P.,95.5,15.7,0.2,6
+company,North America,United States of America,Laika Entertainment,95.2,56.0,0.53,5
+company,North America,United States of America,K/O Paper Products,94.6,103.6,0.93,5
+company,North America,United States of America,Fortis Films,94.5,41.0,0.39,5
+company,North America,United States of America,Misher Films,94.0,64.5,0.75,6
+company,North America,United States of America,Scion Films,93.3,27.8,0.71,13
+company,North America,United States of America,Interscope Communications,91.8,28.7,0.83,13
+company,North America,United States of America,Largo Entertainment,91.1,30.7,0.31,6
+company,North America,United States of America,Artisan Entertainment,85.2,10.3,0.12,9
+company,North America,United States of America,RatPac Entertainment,85.1,58.5,1.13,7
+company,North America,United States of America,3 Arts Entertainment,84.7,51.6,1.05,10
+company,North America,United States of America,Anton Capital Entertainment (ACE),84.5,26.8,0.34,6
+company,North America,United States of America,Amen Ra Films,82.9,44.8,0.46,5
+company,North America,United States of America,Likely Story,82.7,16.4,0.24,10
+company,North America,United States of America,LivePlanet,79.6,69.2,0.82,6
+company,North America,United States of America,BBC Films,79.4,28.0,0.61,15
+company,North America,United States of America,Broken Road Productions,79.0,74.0,0.79,6
+company,North America,United States of America,Ciné+,77.9,26.3,0.47,6
+company,North America,United States of America,Forward Pass,77.7,96.4,1.46,8
+company,North America,United States of America,Scott Free Productions,76.6,68.8,4.92,33
+company,North America,United States of America,Mel's Cite du Cinema,75.0,68.0,1.54,12
+company,North America,United States of America,Sidney Kimmel Entertainment,74.8,21.7,0.52,14
+company,North America,United States of America,Laurence Mark Productions,74.4,65.1,0.86,8
+company,North America,United States of America,40 Acres & A Mule Filmworks,74.3,19.2,0.47,16
+company,North America,United States of America,Phoenix Pictures,73.7,46.1,1.11,16
+company,North America,United States of America,Spring Creek Productions,73.4,61.1,0.73,7
+company,North America,United States of America,Closest to the Hole Productions,72.1,47.3,0.49,7
+company,North America,United States of America,Contrafilm,71.6,49.3,0.76,9
+company,North America,United States of America,DiNovi Pictures,71.2,43.3,0.5,9
+company,North America,United States of America,Beacon Pictures,71.1,45.3,0.48,7
+company,North America,United States of America,Dino De Laurentiis Company,70.2,32.1,0.87,14
+company,North America,United States of America,Reliance BIG Entertainment,68.9,73.8,0.63,5
+company,North America,United States of America,Initial Entertainment Group (IEG),68.7,64.4,0.99,8
+company,North America,United States of America,2929 Productions,67.1,17.3,0.22,10
+company,North America,United States of America,Wild Bunch,66.0,11.3,0.12,9
+company,North America,United States of America,Warner Bros. Pictures,65.7,105.9,3.02,9
+company,North America,United States of America,Mutual Film Company,64.8,71.2,1.67,13
+company,North America,United States of America,Neal Street Productions,64.3,32.0,0.26,5
+company,North America,United States of America,Saturn Films,63.9,57.7,1.58,16
+company,North America,United States of America,Mandalay Pictures,63.6,41.8,0.57,9
+company,North America,United States of America,Angry Films,62.0,98.6,1.11,5
+company,North America,United States of America,Toho-Towa,61.7,74.4,0.9,8
+company,North America,United States of America,1984 Private Defense Contractors,59.1,30.8,0.19,5
+company,North America,United States of America,Icon Entertainment International,58.9,40.7,1.02,11
+company,North America,United States of America,Mad Chance,57.0,50.5,0.61,8
+company,North America,United States of America,Ghoulardi Film Company,56.5,25.7,0.23,6
+company,North America,United States of America,Vinyl Films,56.1,54.4,0.45,5
+company,North America,United States of America,Cinerenta Medienbeteiligungs KG,54.8,15.2,0.09,5
+company,North America,United States of America,Destination Films,54.8,8.1,0.01,5
+company,North America,United States of America,DreamWorks Pictures,53.6,61.2,0.98,10
+company,North America,United States of America,Art Linson Productions,52.8,26.9,0.18,5
+company,North America,United States of America,TF1 Films Production,51.8,35.3,0.49,8
+company,North America,United States of America,Kanzaman,51.6,67.1,0.62,7
+company,North America,United States of America,Propaganda Films,50.3,15.7,0.27,9
+company,North America,United States of America,Infinitum Nihil,48.9,150.5,1.44,6
+company,North America,United States of America,City Light Films,47.7,42.6,0.32,5
+company,North America,United States of America,De Laurentiis Entertainment Group (DEG),47.7,9.7,0.16,9
+company,North America,United States of America,British Broadcasting Corporation (BBC),46.8,73.2,0.63,5
+company,North America,United States of America,Morgan Creek Productions,44.3,35.6,1.49,33
+company,North America,United States of America,Valhalla Motion Pictures,43.9,80.4,1.13,8
+company,North America,United States of America,Nick Wechsler Productions,42.2,27.9,0.3,7
+company,North America,United States of America,Anarchos Productions,41.5,98.4,0.6,5
+company,North America,United States of America,Epsilon Motion Pictures,40.4,46.3,2.27,34
+company,North America,United States of America,Gramercy Pictures,40.4,8.9,0.08,5
+company,North America,United States of America,Intermedia Films,40.0,52.0,1.34,20
+company,North America,United States of America,Metropolitan Filmexport,39.3,49.8,0.32,5
+company,North America,United States of America,Dark Castle Entertainment,37.0,31.0,0.56,13
+company,North America,United States of America,PalmStar Media,36.5,18.6,0.18,7
+company,North America,United States of America,Cheyenne Enterprises,34.8,62.5,0.78,8
+company,North America,United States of America,IMF Internationale Medien und Film GmbH & Co. 3. Produktions KG,24.7,106.5,0.88,6
+company,North America,United States of America,Groundswell Productions,20.4,13.7,0.13,7
+company,North America,United States of America,Touchwood Pacific Partners 1,19.5,30.2,0.19,5
+company,North America,United States of America,Current Entertainment,19.2,31.1,0.26,7
+company,North America,United States of America,Millennium Films,15.3,40.9,1.95,30
+company,North America,United States of America,Golan-Globus Productions,12.4,10.7,0.07,8
+company,North America,United States of America,Casey Silver Productions,9.9,65.4,0.36,5
+company,North America,United States of America,Nu Image Films,8.5,41.2,0.97,15
+company,North America,United States of America,Bel Air Entertainment,4.3,54.3,0.35,6
+company,North America,United States of America,Cinergi Pictures Entertainment,4.3,48.5,0.78,12
+company,North America,United States of America,Signature Pictures,4.2,34.5,0.25,8
+company,North America,United States of America,Dune Films,3.0,66.0,0.42,5
+company,North America,United States of America,Marubeni,2.7,69.3,0.5,6
+company,North America,United States of America,Fine Line Features,-1.2,8.3,0.08,10
+company,North America,United States of America,Savoy Pictures,-3.4,17.2,0.07,5
+company,North America,United States of America,Rysher Entertainment,-3.5,38.3,0.28,7
+company,North America,United States of America,Grosvenor Park Media Ltd.,-5.0,30.2,0.13,5
+company,North America,United States of America,Fox Atomic,-6.0,16.8,0.08,5
+company,North America,United States of America,Silver Reel,-6.0,24.4,0.12,6
+company,North America,United States of America,Hyde Park Entertainment,-11.2,37.0,0.34,8
+company,North America,United States of America,Industry Entertainment,-14.4,26.9,0.14,6
+company,North America,United States of America,Worldview Entertainment,-21.1,13.6,0.15,13
+company,North America,United States of America,Tele München Fernseh Produktionsgesellschaft (TMG),-24.5,60.2,0.23,5
+company,North America,United States of America,Shangri-La Entertainment,-25.0,34.4,0.21,5
+company,North America,United States of America,Demarest Films,-26.1,23.5,0.11,7
+company,North America,United States of America,Allied Filmmakers,-28.9,43.2,0.14,5
+company,North America,United States of America,Foresight Unlimited,-29.5,17.5,0.16,7
+company,North America,United States of America,Franchise Pictures,-41.5,44.5,0.4,16
+company,North America,United States of America,ApolloMedia Distribution,-61.6,43.9,0.07,5
+company,North America,United States of America,Rising Star,-64.2,30.1,0.07,7
+company,North America,United States of America,Paradox Entertainment,-73.3,33.0,0.06,5
+company,Oceania,Australia,Kennedy Miller Productions,351.9,56.3,1.16,7
+company,Oceania,Australia,Silver Pictures,192.1,110.8,1.88,6
+company,Oceania,Australia,Screen Australia,137.5,9.8,0.21,9
+company,Oceania,Australia,Warner Bros.,108.1,85.4,5.42,28
+company,Oceania,Australia,Village Roadshow Pictures,83.4,75.5,5.83,37
+company,Oceania,Australia,NPV Entertainment,72.2,79.3,1.9,12
+company,Oceania,New Zealand,New Line Cinema,645.7,169.3,5.85,6
+company,Oceania,New Zealand,WingNut Films,364.6,114.3,7.11,13

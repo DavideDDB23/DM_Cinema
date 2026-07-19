@@ -1,0 +1,5 @@
+budget_quartile,min_budget_m,max_budget_m,avg_budget_m,avg_rating,num_rated_films,num_films,mean_roi_pct,median_roi_pct,max_roi_pct,high_outlier_count
+1,0.0,6.0,2.5,6.72,1291,1299,2092053.9,218.8,1239638200.0,165
+2,6.0,18.0,11.4,6.52,1297,1299,258.2,82.5,7452.1,95
+3,18.0,40.0,27.5,6.37,1297,1298,157.8,67.0,2195.5,81
+4,40.0,380.0,86.8,6.46,1298,1298,165.1,116.9,1651.7,54

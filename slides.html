@@ -1,0 +1,1968 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cinema Analytics Data Warehouse</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f8fa;
+      --fg: #111111;
+      --muted: #6b7280;
+      --border: #d9dee7;
+      --accent: #1677ff;
+      --accent-text-light: #0b63ce;
+
+      --zoom-cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMiIgdmlld0JveD0iMCAwIDIyIDIyIj4KICA8Y2lyY2xlIGN4PSI5IiBjeT0iOSIgcj0iNyIgZmlsbD0iI2ZmZmZmZiIgZmlsbC1vcGFjaXR5PSIwLjkiIHN0cm9rZT0iIzExMTExMSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGxpbmUgeDE9IjE1IiB5MT0iMTUiIHgyPSIyMSIgeTI9IjIxIiBzdHJva2U9IiMxMTExMTEiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8dGV4dCB4PSI5IiB5PSIxMyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzExMTExMSI+KzwvdGV4dD4KPC9zdmc+Cg==") 9 9, zoom-in;
+
+      --accent-soft: color-mix(in oklch, var(--accent) 10%, transparent);
+
+      --font-display: Inter, system-ui, -apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif;
+      --font-body: Inter, system-ui, -apple-system, Segoe UI, Helvetica Neue, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+    #deck-track {
+      display: flex;
+      height: 100%;
+      will-change: auto;
+    }
+    #deck-track.anim {
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    p { text-wrap: pretty; }
+    h1, h2, h3 { text-wrap: balance; }
+
+    .slide {
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      padding: clamp(44px, 5.6vw, 80px) clamp(48px, 7vw, 104px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide.light { background: var(--bg); color: var(--fg); }
+    .slide.dark { background: var(--fg); color: var(--bg); }
+    .slide.hero { padding-block: clamp(56px, 7vw, 96px); }
+    .slide.center { align-items: center; text-align: center; justify-content: center; }
+    .slide .body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .slide.dark .lead,
+    .slide.dark .muted,
+    .slide.dark .small,
+    .slide.dark .panel p,
+    .slide.dark .metric span,
+    .slide.dark .table td,
+    .slide.dark .note { color: var(--border); }
+    .slide.dark .table td { color: var(--bg); }
+
+    .eyebrow {
+      position: absolute;
+      top: clamp(24px, 3vw, 40px);
+      left: 40px;
+      z-index: 5;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0;
+    }
+    .slide.light .eyebrow {
+      color: var(--accent-text-light);
+    }
+    .h-hero,
+    .h-xl,
+    .h-md {
+      font-family: var(--font-display);
+      letter-spacing: 0;
+      margin: 0;
+      font-weight: 760;
+    }
+    .h-hero {
+      font-size: clamp(52px, 6vw, 86px);
+      line-height: 1.04;
+      max-width: 18ch;
+      margin-bottom: 20px;
+    }
+    .h-xl {
+      font-size: clamp(40px, 4.3vw, 60px);
+      line-height: 1.08;
+      max-width: 22ch;
+      margin-bottom: 18px;
+    }
+    .h-md {
+      font-size: clamp(30px, 3vw, 42px);
+      line-height: 1.16;
+      max-width: 26ch;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: clamp(20px, 1.55vw, 25px);
+      line-height: 1.48;
+      color: var(--fg);
+      max-width: 64ch;
+      margin: 0;
+      font-weight: 430;
+    }
+    .small {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .meta {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 34px;
+    }
+    .topline .lead {
+      max-width: 42ch;
+      color: var(--fg);
+      font-weight: 460;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      min-height: 100%;
+    }
+    .slide.dark .panel {
+      background: rgba(255,255,255,0.06);
+      border-color: var(--muted);
+    }
+    .slide.dark .panel p,
+    .slide.dark .panel li { color: var(--border); }
+    .slide.dark .panel h3 { color: var(--bg); }
+    .panel h3 {
+      font-size: 21px;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 720;
+    }
+    .panel p,
+    .panel li {
+      color: var(--fg);
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .panel ul {
+      display: grid;
+      gap: 8px;
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .slide.dark .metric {
+      background: var(--fg);
+      border-color: var(--muted);
+    }
+    .metric strong {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 25px;
+      line-height: 1;
+      color: var(--fg);
+      margin-bottom: 8px;
+    }
+    .slide.dark .metric strong { color: var(--bg); }
+    .metric span {
+      display: block;
+      color: var(--fg);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .step {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 18px;
+      position: relative;
+    }
+    .slide.dark .step { background: rgba(255,255,255,0.06); border-color: var(--muted); }
+    .step h3 {
+      font-size: 21px;
+      line-height: 1.18;
+      margin: 8px 0 8px;
+      font-weight: 720;
+    }
+    .step p {
+      color: var(--fg);
+      font-size: 15px;
+      line-height: 1.42;
+      margin: 0;
+    }
+    .slide.dark .step p { color: var(--border); }
+
+    /* ===== Slide 4: track-based sliding reveal ===== */
+
+    [data-od-id="slide-id-reconciliation"] .step {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    [data-od-id="slide-id-reconciliation"] .step-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: none;
+    }
+
+    [data-od-id="slide-id-reconciliation"].anim-reveal .step-track {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-od-id="slide-id-reconciliation"] .step.revealed .step-track {
+      transform: translateX(-50%);
+    }
+
+    [data-od-id="slide-id-reconciliation"] .panel-compact,
+    [data-od-id="slide-id-reconciliation"] .panel-revealed {
+      flex: 0 0 50%;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+
+    [data-od-id="slide-id-reconciliation"] .panel-compact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-od-id="slide-id-reconciliation"] .panel-compact .nb {
+      height: 1em;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    [data-od-id="slide-id-reconciliation"] .panel-revealed {
+      position: relative;
+    }
+    [data-od-id="slide-id-reconciliation"] .panel-revealed .nb {
+      position: absolute;
+      top: -6px;
+      right: 12px;
+      font-family: var(--font-display);
+      font-size: 112px;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    [data-od-id="slide-id-reconciliation"] .panel-revealed h3 {
+      font-size: 21px;
+      line-height: 1.18;
+      margin: 8px 0 8px;
+      font-weight: 720;
+      padding-right: 24px;
+    }
+    [data-od-id="slide-id-reconciliation"] .panel-revealed p {
+      color: var(--border);
+      font-size: 15px;
+      line-height: 1.42;
+      margin: 0;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+      font-size: 15px;
+    }
+    .table th,
+    .table td {
+      border-bottom: 1px solid var(--border);
+      padding: 11px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .table th {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--fg);
+      font-weight: 650;
+      background: var(--surface);
+    }
+    .slide.dark .table th { background: rgba(255,255,255,0.06); color: var(--bg); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .slide.dark .table { border-top: 1px solid rgba(255,255,255,0.12); }
+    .table td {
+      color: var(--fg);
+      font-weight: 430;
+    }
+    .slide.dark .table td { border-bottom: 1px solid rgba(255,255,255,0.12); }
+
+    .table .table-section th {
+      font-family: var(--font-display);
+      font-size: 15px;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 8px 10px;
+      font-weight: 650;
+    }
+    .slide.dark .table .table-section th { background: rgba(255,255,255,0.04); color: var(--bg); }
+    .table .num {
+      font-family: var(--font-mono);
+      color: var(--fg);
+      white-space: nowrap;
+    }
+    .slide.dark .table .num { color: var(--bg); }
+
+    .plot-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .plot-grid.four {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .plot-grid.three {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      align-items: stretch;
+    }
+    .zoom-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: var(--zoom-cursor);
+      transition: transform 0.25s ease, box-shadow 0.2s ease;
+    }
+    .zoom-frame:hover {
+      transform: scale(1.015);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.16);
+    }
+    .zoom-frame img {
+      display: block;
+      width: 100%;
+      cursor: var(--zoom-cursor);
+    }
+    .plot-card {
+      padding: 12px;
+      min-height: 0;
+    }
+    .slide.dark .plot-card {
+      background: var(--bg);
+      color: var(--fg);
+      border-color: var(--muted);
+    }
+    .plot-card img {
+      height: clamp(120px, 17vh, 190px);
+      object-fit: contain;
+      border-radius: 8px;
+      background: var(--bg);
+    }
+    .plot-grid.three .plot-card img {
+      height: clamp(220px, 38vh, 360px);
+    }
+    .plot-grid.q5-7 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+    .plot-grid.q5-7 .plot-card {
+      width: calc(50% - 7px);
+    }
+    .plot-card h3 {
+      margin: 10px 0 0;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 720;
+    }
+    .plot-card p {
+      margin: 4px 0 0;
+      color: var(--fg);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+      align-items: stretch;
+    }
+    .diagram .box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    /* ===== Slide 5: track-based sliding reveal ===== */
+    [data-od-id="slide-reconciled-schema"] .panel {
+      overflow: hidden;
+      padding: 0;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: none;
+    }
+    [data-od-id="slide-reconciled-schema"].anim-reveal .panel-track {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-od-id="slide-reconciled-schema"] .panel.revealed .panel-track {
+      transform: translateX(-50%);
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-compact,
+    [data-od-id="slide-reconciled-schema"] .panel-revealed {
+      flex: 0 0 50%;
+      padding: 22px;
+      box-sizing: border-box;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-compact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-compact .nb {
+      height: 1em;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-revealed {
+      position: relative;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-revealed .nb {
+      position: absolute;
+      top: -6px;
+      right: 12px;
+      font-family: var(--font-display);
+      font-size: 112px;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-revealed h3 {
+      font-size: 21px;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 720;
+      padding-right: 32px;
+    }
+    [data-od-id="slide-reconciled-schema"] .panel-revealed p {
+      color: var(--border);
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* ===== Slide 6: track-based sliding reveal ===== */
+    [data-od-id="slide-dimensional-model"] .box-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: none;
+    }
+    [data-od-id="slide-dimensional-model"].anim-reveal .box-track {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-od-id="slide-dimensional-model"] .box.revealed .box-track {
+      transform: translateX(-50%);
+    }
+
+    [data-od-id="slide-dimensional-model"] .panel-compact,
+    [data-od-id="slide-dimensional-model"] .panel-revealed {
+      flex: 0 0 50%;
+      padding: 18px;
+      box-sizing: border-box;
+    }
+
+    [data-od-id="slide-dimensional-model"] .panel-compact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-od-id="slide-dimensional-model"] .panel-compact .nb {
+      height: 1em;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+
+    [data-od-id="slide-dimensional-model"] .panel-revealed {
+      position: relative;
+    }
+    [data-od-id="slide-dimensional-model"] .panel-revealed .nb {
+      position: absolute;
+      top: -6px;
+      right: 12px;
+      font-family: var(--font-display);
+      font-size: 112px;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    [data-od-id="slide-dimensional-model"] .panel-revealed h3 {
+      font-size: 20px;
+      margin: 0 0 12px;
+      line-height: 1.18;
+      padding-right: 32px;
+    }
+    [data-od-id="slide-dimensional-model"] .panel-revealed ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    [data-od-id="slide-dimensional-model"] .panel-revealed li {
+      color: var(--fg);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    /* ===== Slide 8: track-based sliding reveal ===== */
+    [data-od-id="slide-fanout"] .panel {
+      overflow: hidden;
+      padding: 0;
+    }
+    [data-od-id="slide-fanout"] .panel-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: none;
+    }
+    [data-od-id="slide-fanout"].anim-reveal .panel-track {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-od-id="slide-fanout"] .panel.revealed .panel-track {
+      transform: translateX(-50%);
+    }
+    [data-od-id="slide-fanout"] .panel-compact,
+    [data-od-id="slide-fanout"] .panel-revealed {
+      flex: 0 0 50%;
+      padding: 22px;
+      box-sizing: border-box;
+    }
+    [data-od-id="slide-fanout"] .panel-compact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-od-id="slide-fanout"] .panel-compact .nb {
+      height: 1em;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+    [data-od-id="slide-fanout"] .panel-revealed {
+      position: relative;
+    }
+    [data-od-id="slide-fanout"] .panel-revealed .nb {
+      position: absolute;
+      top: -6px;
+      right: 16px;
+      font-family: var(--font-display);
+      font-size: 112px;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.15;
+      line-height: 1;
+      pointer-events: none;
+    }
+    [data-od-id="slide-fanout"] .panel-revealed h3 {
+      font-size: 21px;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 720;
+      padding-right: 32px;
+    }
+    [data-od-id="slide-fanout"] .panel-revealed ul {
+      display: grid;
+      gap: 8px;
+      padding-left: 18px;
+      margin: 0;
+    }
+    [data-od-id="slide-fanout"] .panel-revealed li {
+      color: var(--border);
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* ===== Slide 9: track-based sliding reveal ===== */
+    [data-od-id="slide-star-schema"] .panel {
+      overflow: hidden;
+      padding: 0;
+    }
+    [data-od-id="slide-star-schema"] .panel-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transition: none;
+    }
+    [data-od-id="slide-star-schema"].anim-reveal .panel-track {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-od-id="slide-star-schema"] .panel.revealed .panel-track {
+      transform: translateX(-50%);
+    }
+    [data-od-id="slide-star-schema"] .panel-compact,
+    [data-od-id="slide-star-schema"] .panel-revealed {
+      flex: 0 0 50%;
+      padding: 22px;
+      box-sizing: border-box;
+    }
+    [data-od-id="slide-star-schema"] .panel-compact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-od-id="slide-star-schema"] .panel-compact .nb {
+      height: 1em;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+    [data-od-id="slide-star-schema"] .panel-revealed {
+      position: relative;
+    }
+    [data-od-id="slide-star-schema"] .panel-revealed .nb {
+      position: absolute;
+      top: -6px;
+      right: 12px;
+      font-family: var(--font-display);
+      font-size: 112px;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+      pointer-events: none;
+    }
+    [data-od-id="slide-star-schema"] .panel-revealed h3 {
+      font-size: 21px;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 720;
+      padding-right: 32px;
+    }
+    [data-od-id="slide-star-schema"] .panel-revealed p {
+      color: var(--fg);
+      font-size: 16px;
+      line-height: 1.45;
+      margin: 0;
+    }
+    [data-od-id="slide-star-schema"] .panel-revealed p.arr-down {
+      color: var(--accent);
+      text-align: center;
+      font-size: 22px;
+      line-height: 1;
+      margin: 6px 0;
+    }
+
+    .note {
+      margin-top: 22px;
+      color: var(--fg);
+      font-size: 17px;
+      line-height: 1.5;
+      max-width: 86ch;
+      border-left: 2px solid var(--accent-soft);
+      padding-left: 16px;
+    }
+    .note-box {
+      border: 1px solid var(--accent);
+      border-left: 1px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+    }
+    .slide:has(.note-box) { justify-content: space-between; }
+    .speaker-notes { display: none; }
+    code { font-family: var(--font-mono); font-size: 0.92em; background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; }
+
+    dialog.lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      width: 100vw;
+      max-width: none;
+      height: 100vh;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: rgba(0, 0, 0, 0.82);
+      color: #ffffff;
+      transition: opacity 0.22s ease;
+      perspective: 1600px;
+    }
+    dialog.lightbox::backdrop {
+      background: transparent;
+    }
+    #lightbox-img {
+      display: block;
+      max-width: 92vw;
+      max-height: 88vh;
+      border-radius: 8px;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.42);
+      object-fit: contain;
+      margin: auto;
+      position: absolute;
+      inset: 0;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: max(22px, env(safe-area-inset-top));
+      right: max(28px, env(safe-area-inset-right));
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 32px;
+      line-height: 1;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      z-index: 10001;
+      transition: opacity 0.2s ease, background 0.15s ease;
+    }
+    .lightbox-close:hover {
+      opacity: 1;
+      background: rgba(0,0,0,0.42);
+    }
+
+    #nav-dots {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: min(420px, calc(100vw - 32px));
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #dots-row {
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      cursor: pointer;
+      touch-action: none;
+      user-select: none;
+    }
+    .nav-dot {
+      --dot-size: 8px;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      position: relative;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      appearance: none;
+      -webkit-appearance: none;
+      touch-action: manipulation;
+    }
+    .nav-dot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: var(--dot-size);
+      height: var(--dot-size);
+      transform: translate(-50%, -50%);
+      border-radius: 2px;
+      border: 1.5px solid var(--muted);
+      background: transparent;
+      transition: width 0.1s, height 0.1s, background 0.15s, border-color 0.15s;
+    }
+    .nav-dot.active::before {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .nav-dot:focus-visible,
+    .lightbox-close:focus-visible,
+    .plot-card img:focus-visible,
+    .img-box img:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+    .deck-counter {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .img-box {
+      flex-shrink: 0;
+      margin: 8px 0 0;
+      padding: 8px;
+    }
+    .img-box:hover { transform: scale(1.008); }
+    .img-box img {
+      height: min(48vh, 430px);
+      object-fit: contain;
+      background: #fff;
+      border-radius: 6px;
+    }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .cap-grid span {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 11px 16px;
+      color: var(--fg);
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.5;
+    }
+    [data-od-id="slide-er-diagram"] .cap-grid,
+    [data-od-id="slide-dfm-diagram"] .cap-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    [data-od-id="slide-dfm-diagram"] .img-box {
+      margin-top: 0;
+    }
+    [data-od-id="slide-dfm-diagram"] .img-box img {
+      height: min(40vh, 360px);
+    }
+    [data-od-id="slide-dfm-diagram"] [data-od-id="dfm-production-note"] {
+      margin-top: 10px;
+    }
+
+    @media (min-width: 1001px) and (max-height: 800px) {
+      .slide {
+        padding: 38px clamp(48px, 5.5vw, 76px) 76px;
+      }
+      .slide.hero {
+        padding-top: 42px;
+        padding-bottom: 76px;
+      }
+      .eyebrow {
+        top: 16px;
+        left: 32px;
+        font-size: 14px;
+      }
+      .h-hero {
+        font-size: clamp(40px, 7vh, 54px);
+        margin-bottom: 10px;
+      }
+      .h-xl {
+        font-size: clamp(32px, 5.4vh, 42px);
+        margin-bottom: 10px;
+      }
+      .h-md {
+        font-size: clamp(27px, 4.6vh, 36px);
+        margin-bottom: 8px;
+      }
+      .lead {
+        font-size: 16px;
+        line-height: 1.32;
+      }
+      .topline {
+        gap: 20px;
+        margin-bottom: 14px;
+      }
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        gap: 12px;
+      }
+      .panel {
+        padding: 12px 14px;
+      }
+      .panel h3 {
+        font-size: 17px;
+        margin-bottom: 6px;
+      }
+      .panel p,
+      .panel li {
+        font-size: 13px;
+        line-height: 1.3;
+      }
+      .panel ul {
+        gap: 5px;
+      }
+      .metric-row {
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .metric {
+        padding: 12px;
+      }
+      .pipeline {
+        gap: 10px;
+        margin-top: 10px;
+      }
+      [data-od-id="slide-id-reconciliation"] .panel-compact,
+      [data-od-id="slide-id-reconciliation"] .panel-revealed {
+        padding: 10px 12px;
+      }
+      [data-od-id="slide-id-reconciliation"] .panel-revealed h3 {
+        font-size: 16px;
+        margin: 2px 0 5px;
+      }
+      [data-od-id="slide-id-reconciliation"] .panel-revealed p {
+        font-size: 12px;
+        line-height: 1.28;
+      }
+      [data-od-id="slide-star-schema"] .panel-compact,
+      [data-od-id="slide-star-schema"] .panel-revealed {
+        padding: 12px 14px;
+      }
+      [data-od-id="slide-star-schema"] .panel-compact .nb {
+        font-size: 26px;
+      }
+      [data-od-id="slide-star-schema"] .panel-revealed .nb {
+        font-size: 64px;
+      }
+      [data-od-id="slide-star-schema"] .panel-revealed h3 {
+        font-size: 17px;
+        margin-bottom: 5px;
+      }
+      [data-od-id="slide-star-schema"] .panel-revealed p {
+        font-size: 13px;
+        line-height: 1.3;
+      }
+      [data-od-id="slide-star-schema"] .panel-revealed p.arr-down {
+        font-size: 18px;
+        margin: 4px 0;
+      }
+      .table {
+        margin-top: 10px;
+        font-size: 12px;
+      }
+      .table th,
+      .table td {
+        padding: 5px 7px;
+        line-height: 1.25;
+      }
+      .table .table-section th {
+        font-size: 13px;
+        padding: 5px 7px;
+      }
+      .note {
+        margin-top: 9px;
+        padding-left: 12px;
+        font-size: 13px;
+        line-height: 1.3;
+      }
+      .note-box {
+        padding: 8px 12px;
+      }
+      [data-od-id="slide-fanout"] .panel-compact,
+      [data-od-id="slide-fanout"] .panel-revealed {
+        padding: 11px 13px;
+      }
+      [data-od-id="slide-fanout"] .panel-revealed h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      [data-od-id="slide-fanout"] .panel-revealed ul {
+        gap: 4px;
+      }
+      [data-od-id="slide-fanout"] .panel-revealed li {
+        font-size: 12px;
+        line-height: 1.28;
+      }
+      .img-box {
+        margin-top: 6px;
+        padding: 6px;
+      }
+      .cap-grid {
+        gap: 8px;
+        margin-top: 7px;
+      }
+      .cap-grid span {
+        padding: 6px 8px;
+        font-size: 11.5px;
+        line-height: 1.28;
+      }
+      .plot-grid {
+        gap: 9px;
+        margin-top: 9px;
+      }
+      .plot-grid.four {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .plot-card {
+        padding: 7px;
+      }
+      .plot-card img {
+        height: clamp(84px, 14vh, 108px);
+      }
+      .plot-card h3 {
+        margin-top: 5px;
+        font-size: 13px;
+      }
+      .plot-card p {
+        margin-top: 2px;
+        font-size: 11px;
+      }
+      [data-od-id="slide-olap-visuals-1"],
+      [data-od-id="slide-olap-visuals-2"] {
+        padding-bottom: 34px;
+      }
+      [data-od-id="slide-olap-visuals-1"] .topline,
+      [data-od-id="slide-olap-visuals-2"] .topline {
+        margin-bottom: 6px;
+      }
+      [data-od-id="slide-olap-visuals-1"] .plot-grid,
+      [data-od-id="slide-olap-visuals-2"] .plot-grid {
+        gap: 7px;
+        margin-top: 0;
+      }
+      [data-od-id="slide-olap-visuals-1"] .plot-card img {
+        height: 198px;
+      }
+      [data-od-id="slide-olap-visuals-2"] .plot-grid.q5-7 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+      }
+      [data-od-id="slide-olap-visuals-2"] .plot-grid.q5-7 .plot-card {
+        width: 100%;
+      }
+      [data-od-id="slide-olap-visuals-2"] .plot-card img {
+        height: 195px;
+      }
+      [data-od-id="slide-olap-visuals-2"] .plot-grid.q5-7 [data-od-id="plot-q7-top-films"] {
+        grid-column: 1 / -1;
+        width: 76%;
+        justify-self: center;
+      }
+      [data-od-id="slide-olap-visuals-2"] [data-od-id="plot-q7-top-films"] img {
+        height: 225px;
+      }
+    }
+
+    @media (max-width: 1000px) {
+      .slide {
+        justify-content: flex-start;
+        overflow-y: auto;
+      }
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .metric-row,
+      .pipeline,
+      .diagram,
+      .plot-grid.four,
+      .plot-grid.three,
+      .plot-grid.q5-7,
+      .cap-grid { grid-template-columns: 1fr; }
+      .topline { display: block; }
+      .plot-grid.q5-7 .plot-card { width: 100%; }
+      [data-od-id="slide-er-diagram"] .cap-grid,
+      [data-od-id="slide-dfm-diagram"] .cap-grid {
+        grid-template-columns: 1fr;
+      }
+      [data-od-id="slide-er-diagram"] .img-box img,
+      [data-od-id="slide-dfm-diagram"] .img-box img,
+      [data-od-id="slide-star-diagram"] .img-box img {
+        height: auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #deck-track.anim,
+      [data-od-id="slide-id-reconciliation"].anim-reveal .step-track,
+      [data-od-id="slide-reconciled-schema"].anim-reveal .panel-track,
+      [data-od-id="slide-dimensional-model"].anim-reveal .box-track,
+      [data-od-id="slide-fanout"].anim-reveal .panel-track,
+      [data-od-id="slide-star-schema"].anim-reveal .panel-track,
+      .lightbox,
+      .lightbox-close,
+      .nav-dot,
+      .nav-dot::before,
+      .deck-counter,
+      .plot-card,
+      .zoom-frame,
+      .zoom-frame *,
+      .zoom-frame::before,
+      .zoom-frame::after,
+      .zoom-frame *::before,
+      .zoom-frame *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="deck-track">
+  <section class="slide hero light center" data-screen-label="01 Cover" data-od-id="slide-cover" aria-hidden="false">
+    <div class="eyebrow" data-od-id="cover-eyebrow">Data Management Project</div>
+    <h1 class="h-hero" data-od-id="cover-title">Cinema Analytics Data Warehouse</h1>
+    
+    <p class="lead" data-od-id="cover-authors" style="margin: 32px 0px 0px; font-size: 20px; color: var(--fg); font-weight: 500;">Davide De Blasio · Enrico Battistoni</p>
+
+    <aside class="speaker-notes">Welcome the audience and introduce the title of the project.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="02 Overview" data-od-id="slide-overview" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="overview-eyebrow">Overview</p>
+        <h2 class="h-xl" data-od-id="overview-title">Project scope and scale</h2>
+      </div>
+      <p class="lead" data-od-id="overview-lead">A PostgreSQL data warehouse integrating IMDb and Kaggle movie data for dimensional analysis and OLAP queries.</p>
+    </div>
+    
+    <div class="metric-row" data-od-id="overview-metrics" style="margin-top: 16px;">
+      <div class="metric"><strong>3</strong><span>layers: reconciled, warehouse, OLAP</span></div>
+      <div class="metric"><strong>45,431</strong><span>movies in the reconciled layer</span></div>
+      <div class="metric"><strong>268,615</strong><span>fact rows in the warehouse</span></div>
+      <div class="metric"><strong>7</strong><span>OLAP queries; 3 use window functions</span></div>
+    </div>
+    
+    <aside class="speaker-notes">Introduce the project as an end-to-end data management pipeline: source integration, reconciliation, dimensional modeling, and analytical querying.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="03 Source Data" data-od-id="slide-source-data" aria-hidden="true" inert>
+    <div class="body">
+      <div class="topline">
+        <div>
+          <p class="eyebrow" data-od-id="source-eyebrow">Input datasets</p>
+          <h2 class="h-xl" data-od-id="source-title">Source data and integration problem</h2>
+        </div>
+        <p class="lead" data-od-id="source-lead">Two movie datasets capture complementary aspects of the same domain; the first design decision is how to integrate them without losing source-specific meaning.</p>
+      </div>
+      <div class="grid-2" data-od-id="source-panels">
+        <div class="panel">
+          <h3>IMDb data</h3>
+          <ul>
+            <li>Movies are identified by the unique <code>tconst</code> key (e.g. <code>tt0111161</code>).</li>
+            <li>Ratings, votes, people, crew and principal roles.</li>
+            <li><strong>Strong coverage</strong> for movie identity and audience evaluation; used as the reference for ratings and roles.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Kaggle movie metadata</h3>
+          <ul>
+            <li>TMDB identifiers and production metadata.</li>
+            <li>Budget, revenue, countries, languages and companies.</li>
+            <li><strong>Useful for financial and production-oriented analysis</strong>; used to complete what IMDb does not provide.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="note note-box" data-od-id="source-note">Without reconciliation, ratings and financials could not be analyzed together.</p>
+    <aside class="speaker-notes">Explain why reconciliation is necessary before any meaningful analytical model can be built: IMDb alone has no full financial picture, while Kaggle alone lacks the same rating and role precision.</aside>
+  </section>
+
+  <section class="slide dark" data-screen-label="04 ID Reconciliation" data-od-id="slide-id-reconciliation" aria-hidden="true" inert>
+   <div class="body">
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="reconciliation-eyebrow">Reconciled layer</p>
+        <h2 class="h-xl" data-od-id="reconciliation-title">IDs first; matching only as fallback</h2>
+      </div>
+      <p class="lead" data-od-id="reconciliation-lead"><strong>39,091</strong> rows resolve from a valid source IMDb ID; exact and fuzzy title matching are controlled fallbacks, and every outcome is audited.</p>
+    </div>
+    <div class="pipeline" data-od-id="reconciliation-pipeline">
+      <div class="step"><div class="step-track"><div class="panel-compact"><span class="nb">1</span></div><div class="panel-revealed"><span class="nb" aria-hidden="true">1</span><h3>Normalize source ID</h3><p>Canonicalize IMDb ID syntax and distinguish valid IDs from missing or invalid values.</p></div></div></div>
+      <div class="step"><div class="step-track"><div class="panel-compact"><span class="nb">2</span></div><div class="panel-revealed"><span class="nb" aria-hidden="true">2</span><h3>Source-ID first</h3><p>Accept IDs found in eligible IMDb; quarantine valid source IDs that are unavailable.</p></div></div></div>
+      <div class="step"><div class="step-track"><div class="panel-compact"><span class="nb">3</span></div><div class="panel-revealed"><span class="nb" aria-hidden="true">3</span><h3>Controlled fallback</h3><p>Only without a valid ID, require a unique exact title-year match, then a unique same-year fuzzy best.</p></div></div></div>
+      <div class="step"><div class="step-track"><div class="panel-compact"><span class="nb">4</span></div><div class="panel-revealed"><span class="nb" aria-hidden="true">4</span><h3>Audit every row</h3><p>Record method, status and reason; never replace a valid unavailable ID heuristically.</p></div></div></div>
+    </div>
+    <table class="table" data-od-id="reconciliation-table">
+      <thead><tr><th>Outcome</th><th>Records</th></tr></thead>
+      <tbody>
+        <tr><td>Accepted mappings</td><td class="num"><strong>39,096</strong></td></tr>
+        <tr><td>Quarantined</td><td class="num"><strong>6,327</strong></td></tr>
+        <tr><td>Unmatched</td><td class="num"><strong>10</strong></td></tr>
+         </tbody>
+      </table>
+   </div>
+      <p class="note note-box" data-od-id="reconciliation-note">Audit status governs cross-source identity, not film retention: the loader keeps 45,431 titled Kaggle films, while 39,096 carry an accepted IMDb mapping.</p>
+      <aside class="speaker-notes">Lead with source IDs. Distinguish accepted mappings, quarantine and unmatched rows; valid unavailable IDs are never overridden by title similarity.</aside>
+  </section>
+
+  <section class="slide dark" data-screen-label="05 Reconciled Schema" data-od-id="slide-reconciled-schema" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="reconciled-eyebrow">Layer 1 · Reconciled</p>
+        <h2 class="h-xl" data-od-id="reconciled-title">Reconciled schema in third normal form</h2>
+      </div>
+      <p class="lead" data-od-id="reconciled-lead">A normalized hub integrates identity, financials, ratings and production roles while preserving source relationships before warehouse denormalization.</p>
+    </div>
+    <div class="grid-3" data-od-id="reconciled-panels">
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">1</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">1</span><h3>Core entity</h3><p>The <code>film</code> table stores the unified movie identity with IMDb and TMDB references when available.</p></div></div></div>
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">2</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">2</span><h3>Canonical relations</h3><p>M:N bridges preserve roles and production data; original language is recovered and Science Fiction becomes Sci-Fi.</p></div></div></div>
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">3</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">3</span><h3>Integrity controls</h3><p>DDL constraints and ETL checks reject invalid keys, role values and source mappings.</p></div></div></div>
+    </div>
+    <table class="table" data-od-id="reconciled-table">
+      <thead><tr><th>Table</th><th>Rows</th><th>Role in the model</th></tr></thead>
+      <tbody>
+        <tr><td>film</td><td class="num">45,431</td><td>Cleaned Kaggle films, enriched where an IMDb mapping is accepted.</td></tr>
+        <tr><td>person</td><td class="num">183,082</td><td>Only people referenced by relevant roles of loaded films.</td></tr>
+        <tr><td>film_role</td><td class="num">474,054</td><td>Movie-person-role relationships.</td></tr>
+        <tr><td>film_genre</td><td class="num">100,068</td><td>Movie-to-canonical-genre relationships.</td></tr>
+        <tr><td>film_language</td><td class="num">59,847</td><td>Spoken and explicitly recovered original-language links.</td></tr>
+      </tbody>
+    </table>
+    <aside class="speaker-notes">This is a normalized integration model, not yet the warehouse. Counts are diagnostic, while stable identity, bridge, role, language and genre invariants are blocking gates.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="06 ER Diagram" data-od-id="slide-er-diagram" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="er-diagram-eyebrow">Reconciled layer</p>
+        <h2 class="h-xl" data-od-id="er-diagram-title">ER diagram: 3NF reconciled layer</h2>
+      </div>
+      <p class="lead" data-od-id="er-diagram-lead">The separate ER view makes the normalized identity hub and its M:N relationship tables explicit.</p>
+    </div>
+    <figure class="img-box zoom-frame" data-od-id="er-diagram-frame">
+      <img src="docs/diagrams/er_reconciled.png" alt="ER diagram of the reconciled 3NF layer, with film as the central hub and relationship tables for genres, languages, countries, companies and roles" width="2253" height="1050">
+    </figure>
+    <div class="cap-grid" data-od-id="er-diagram-caption">
+      <span>Central <code>film</code> hub with IMDb + TMDB identifiers.</span>
+      <span>M:N bridges preserve genres, languages, countries, companies and roles.</span>
+    </div>
+    <aside class="speaker-notes">Use the diagram as visual proof of the 3NF structure. The validator reports diagnostics, then raises on any stable-invariant violation.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="07 Dimensional Model" data-od-id="slide-dimensional-model" aria-hidden="true" inert>
+    <div class="body">
+      <div class="topline">
+        <div>
+          <p class="eyebrow" data-od-id="dfm-eyebrow">Dimensional Fact Model</p>
+          <h2 class="h-xl" data-od-id="dfm-title">Fact granularity and dimensions</h2>
+        </div>
+        <p class="lead" data-od-id="dfm-lead">The DFM fixes the analytical grain before the physical star is built; that choice governs every OLAP aggregation.</p>
+      </div>
+      <div class="diagram" data-od-id="dfm-diagram">
+        <div class="box"><div class="box-track"><div class="panel-compact" aria-hidden="false"><span class="nb">1</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">1</span><h3>Choose analysis axes</h3>
+          <ul>
+            <li><strong>Film</strong> is degenerate; <strong>Time</strong> is year → decade → era.</li>
+            <li><strong>Genre</strong>: genre → genre group.</li>
+            <li><strong>ProductionContext</strong> branches to company and country → continent.</li>
+            <li><strong>Director</strong> is flat; language → language family. Both are optional.</li>
+          </ul>
+        </div></div></div>
+        <div class="box"><div class="box-track"><div class="panel-compact" aria-hidden="false"><span class="nb">2</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">2</span><h3>Define the fact grain</h3>
+          <ul>
+            <li><strong>Grain:</strong> film × genre × production context × director × original language.</li>
+            <li>Genre, production context and director are multiple dimensions.</li>
+            <li>One film → multiple fact rows.</li>
+          </ul>
+        </div></div></div>
+        <div class="box"><div class="box-track"><div class="panel-compact" aria-hidden="false"><span class="nb">3</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">3</span><h3>Attach movie measures</h3>
+          <ul>
+            <li>Revenue, budget and ROI from Kaggle.</li>
+            <li>Average rating and vote counts from IMDb.</li>
+            <li>Deduplicate Film before SUM / AVG; never SUM ROI or rating.</li>
+          </ul>
+        </div></div></div>
+      </div>
+    </div>
+    <p class="note note-box" data-od-id="dfm-note">Genre, ProductionContext and Director create fan-out. Director and original language are optional; original language is single and does not multiply rows.</p>
+    <aside class="speaker-notes">Explain that production country, director and original language are optional axes. The fact keeps the full multi-valued grain, so OLAP queries deduplicate to their target level.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="08 DFM Diagram" data-od-id="slide-dfm-diagram" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="dfm-diagram-eyebrow">Dimensional Fact Model</p>
+        <h2 class="h-xl" data-od-id="dfm-diagram-title">DFM diagram: fact grain and hierarchies</h2>
+      </div>
+      <p class="lead" data-od-id="dfm-diagram-lead">The conceptual model separates the fact, aggregation semantics and analysis coordinates before physical implementation.</p>
+    </div>
+    <figure class="img-box zoom-frame" data-od-id="dfm-diagram-frame">
+      <img src="docs/diagrams/dfm_schema.png" alt="Dimensional Fact Model showing FilmPerformance, degenerate Film, Time, Genre, ProductionContext, optional Director and optional Language dimensions" width="2253" height="1050">
+    </figure>
+    <p class="note note-box" data-od-id="dfm-production-note"><code>ProductionContext</code> branches independently to Company and ProductionCountry → Continent; it never asserts company domicile.</p>
+    <aside class="speaker-notes">Connect the conceptual DFM to the SQL implementation: the full grain supports independent dimensional analysis but makes movie-level measures non-additive across the fan-out.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="09 Star Schema" data-od-id="slide-star-schema" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="star-eyebrow">Layer 2 · Physical schema</p>
+        <h2 class="h-xl" data-od-id="star-title">Star schema implementation</h2>
+      </div>
+      <p class="lead" data-od-id="star-lead">Denormalized dimensions keep roll-up, drill-down, slice and dice paths readable around <code>fact_film_performance</code>.</p>
+    </div>
+    <div class="grid-3" data-od-id="star-panels">
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">1</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">1</span><h3>Star schema</h3><p>Five denormalized dimensions around the fact.</p><p class="arr-down">↓</p><p>Short, readable OLAP join paths.</p></div></div></div>
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">2</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">2</span><h3>ETL eligibility</h3><p>Year 1900–2030, at least one genre and one resolvable production company.</p><p class="arr-down">↓</p><p>33,418 / 45,431 films pass the filter (73.6%).</p><p class="arr-down">↓</p><p>73.6% fact coverage; 26.4% excluded only by ETL policy.</p></div></div></div>
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">3</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">3</span><h3>Optional axes</h3><p>Production context may have no country; Director and Language FKs are nullable.</p><p class="arr-down">↓</p><p>Missing optional data never excludes an eligible film.</p></div></div></div>
+    </div>
+    <aside class="speaker-notes">Separate ETL policy from physical constraints. Snapshot totals are diagnostic; required keys, fact grain, FK integrity, movie-level measures and ROI arithmetic are blocking invariants.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="10 Star Diagram" data-od-id="slide-star-diagram" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="star-diagram-eyebrow">Physical schema</p>
+        <h2 class="h-xl" data-od-id="star-diagram-title">Star schema: OLAP-ready implementation</h2>
+      </div>
+      <p class="lead" data-od-id="star-diagram-lead">The physical warehouse places the film-performance fact at the center of five analytical dimensions.</p>
+    </div>
+    <figure class="img-box zoom-frame" data-od-id="star-diagram-frame">
+      <img src="docs/diagrams/star_schema.png" alt="Physical star schema with fact_film_performance at the center and time, genre, production, director and language dimensions around it" width="2253" height="1050">
+    </figure>
+    <div class="cap-grid" data-od-id="star-diagram-caption">
+      <span>268,615 fact rows, 33,418 distinct films.</span>
+      <span>5 dimension tables plus degenerate Film. DDL constraints + ETL preflight/checks: local/row-level integrity.</span>
+      <span>48,609 / 49,150 production rows have a continent; manual delivery-snapshot checks: cross-row measure consistency + fact coverage.</span>
+    </div>
+    <aside class="speaker-notes">Use the diagram to contrast the analytical star with the 3NF layer. Counts remain snapshot diagnostics, while stable key, FK, grain and measure checks raise exceptions.</aside>
+  </section>
+
+  <section class="slide dark" data-screen-label="11 Fan-out Bias" data-od-id="slide-fanout" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="fanout-eyebrow">Aggregation issue</p>
+        <h2 class="h-xl" data-od-id="fanout-title">Deduplication prevents inflated totals</h2>
+      </div>
+    </div>
+    <div class="grid-2" data-od-id="fanout-panels">
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">?</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">?</span><h3>Why the bias appears</h3>
+        <ul>
+          <li>Genres, company-country contexts and directors are M:N — they fan-out fact rows.</li>
+          <li>Original language is single and optional, so it does <strong>not</strong> create fan-out.</li>
+          <li>Revenue and budget are <strong>movie-level</strong> measures.</li>
+          <li>Summing across fan-out rows <strong>inflates</strong> those values.</li>
+        </ul>
+      </div></div></div>
+      <div class="panel"><div class="panel-track"><div class="panel-compact" aria-hidden="false"><span class="nb">!</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">!</span><h3>How analytical validity is preserved</h3>
+        <ul>
+          <li>Use a CTE to deduplicate at the target dimensional level.</li>
+          <li>Aggregate only <strong>after deduplication</strong>.</li>
+          <li>Apply consistently: results must reflect real data, not modeling artifacts.</li>
+        </ul>
+      </div></div></div>
+    </div>
+    <table class="table" data-od-id="fanout-table">
+      <thead><tr><th style="width: 26%;">Example</th><th>Without deduplication</th><th>With deduplication</th></tr></thead>
+      <tbody>
+        <tr><td><strong>One film:</strong> Furious 7</td><td>Its revenue is repeated in every genre × company-country × director row.</td><td>Collapse the repeated rows into <strong>one contribution</strong> at the target grain.</td></tr>
+        <tr><td><strong>Genre–decade result:</strong> Action, 2010s</td><td>A direct SUM adds those repeated revenues, <strong>inflating</strong> the group total.</td><td>Keep one row per film, decade and genre group, then aggregate.</td></tr>
+      </tbody>
+    </table>
+    <aside class="speaker-notes">This is a key technical slide. Explain it slowly because it shows that the project does not just run OLAP syntax; it also handles a real dimensional modeling pitfall.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="12 OLAP Queries" data-od-id="slide-olap-queries" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="olap-eyebrow">Query workload</p>
+        <h2 class="h-xl" data-od-id="olap-title">Seven queries cover the required OLAP patterns</h2>
+      </div>
+      <p class="lead" data-od-id="olap-lead">Four classical OLAP queries and three window-function analyses.</p>
+    </div>
+    <table class="table" data-od-id="olap-table">
+      <thead><tr><th>Query</th><th>Operation</th><th>Analytical question</th></tr></thead>
+      <tbody>
+        <tr class="table-section"><th colspan="3">Classical OLAP operations</th></tr>
+        <tr><td class="num">Q1</td><td>Roll-up</td><td>Revenue by genre group and decade</td></tr>
+        <tr><td class="num">Q2</td><td>Drill-down + slice</td><td>ROI from continent to company context</td></tr>
+        <tr><td class="num">Q3</td><td>Dice</td><td>Ratings by era and language family</td></tr>
+        <tr><td class="num">Q4</td><td>Slice + CTE</td><td>ROI by studio size</td></tr>
+        <tr class="table-section"><th colspan="3">Window-function queries</th></tr>
+        <tr><td class="num">Q5</td><td>NTILE + percentiles</td><td>ROI across budget quartiles</td></tr>
+        <tr><td class="num">Q6</td><td>SUM OVER</td><td>Cumulative revenue by genre</td></tr>
+        <tr><td class="num">Q7</td><td>RANK</td><td>Top-rated films by decade</td></tr>
+      </tbody>
+    </table>
+    <aside class="speaker-notes">Present the table as an index, not a script. Q1 uses revenue-present films from 1970 onward; Q2 independently deduplicates each production level; Q3 compares two eras and seven language families with at least 20 films; Q4 requires ROI and budget ≥ $50k; Q5 uses deterministic NTILE ties and per-quartile IQR context; Q6 builds seven cumulative genre series; Q7 requires rating, 1,000 votes and decade ≥ 1950.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="13 OLAP Visual Outputs I" data-od-id="slide-olap-visuals-1" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="visuals-1-eyebrow">Exported charts</p>
+        <h2 class="h-xl" data-od-id="visuals-1-title">Visual outputs for Q1–Q4</h2>
+      </div>
+      <p class="lead" data-od-id="visuals-1-lead">The first four plots connect roll-up, drill-down, dice and slice operations to the current canonical CSV exports.</p>
+    </div>
+    <div class="plot-grid four" data-od-id="visuals-1-grid">
+      <article class="plot-card zoom-frame" data-od-id="plot-q1-revenue-genre-decade">
+        <img src="exports/plot_q1_revenue_genre_decade.png" alt="Q1 average revenue by genre group and decade from 1970 onward" width="1300" height="580">
+        <h3>Q1 · Revenue by genre group and decade</h3>
+      </article>
+      <article class="plot-card zoom-frame" data-od-id="plot-q2-roi-production-drilldown">
+        <img src="exports/plot_q2_roi_production_drilldown.png" alt="Three-panel Q2 branch progression from continent to production country to company context, with average ROI and independently deduplicated film counts" width="2020" height="825">
+        <h3>Q2 · Production drill-down</h3>
+      </article>
+      <article class="plot-card zoom-frame" data-od-id="plot-q3-rating-language">
+        <img src="exports/plot_q3_rating_era_language.png" alt="Mean IMDb rating by selected language family in Blockbuster and Modern eras for groups with at least 20 films" width="1180" height="820">
+        <h3>Q3 · Rating by era and language family</h3>
+      </article>
+      <article class="plot-card zoom-frame" data-od-id="plot-q4-roi-studio-size">
+        <img src="exports/plot_q4_roi_studio_size.png" alt="Average ROI and budget for small, medium and large studio-size bands after film-level deduplication" width="940" height="580">
+        <h3>Q4 · ROI by studio size</h3>
+      </article>
+    </div>
+    <aside class="speaker-notes">Use this slide as a compact visual index of Q1–Q4. Activate any chart to inspect its full-resolution version.</aside>
+  </section>
+
+  <section class="slide light" data-screen-label="14 OLAP Visual Outputs II" data-od-id="slide-olap-visuals-2" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="visuals-2-eyebrow">Exported charts</p>
+        <h2 class="h-xl" data-od-id="visuals-2-title">Window-function outputs for Q5–Q7</h2>
+      </div>
+      <p class="lead" data-od-id="visuals-2-lead">The remaining plots show NTILE budget bands, independent cumulative SUM OVER series and RANK by decade.</p>
+    </div>
+    <div class="plot-grid q5-7" data-od-id="visuals-2-grid">
+      <article class="plot-card zoom-frame" data-od-id="plot-q5-budget-quartile">
+        <img src="exports/plot_q5_budget_quartile_rating.png" alt="Mean and median ROI with high-IQR outlier counts across deterministic budget quartiles for all ROI-available films" width="1660" height="649">
+        <h3>Q5 · Budget quartiles</h3>
+      </article>
+      <article class="plot-card zoom-frame" data-od-id="plot-q6-cumulative-revenue">
+        <img src="exports/plot_q6_cumulative_revenue.png" alt="Independent, non-stacked cumulative revenue lines by selected genre and decade" width="1420" height="700">
+        <h3>Q6 · Cumulative revenue</h3>
+      </article>
+      <article class="plot-card zoom-frame" data-od-id="plot-q7-top-films">
+        <img src="exports/plot_q7_top_films_decade.png" alt="Ranked films by decade, ordered by IMDb rating and then vote count; the 2020 decade has four eligible rows" width="1614" height="823">
+        <h3>Q7 · Top films by decade</h3>
+      </article>
+    </div>
+    <aside class="speaker-notes">For Q5, film_id deterministically breaks equal-budget ties; rating is coverage, not eligibility. Contrast mean with median and IQR outliers rather than claiming a monotonic typical ROI.</aside>
+  </section>
+
+  <section class="slide dark" data-screen-label="15 Results and Limitations" data-od-id="slide-results-limitations" aria-hidden="true" inert>
+    <div class="topline">
+      <div>
+        <p class="eyebrow" data-od-id="results-eyebrow">Evaluation</p>
+        <h2 class="h-xl" data-od-id="results-title">What the model supports — and where it stops</h2>
+      </div>
+      <p class="lead" data-od-id="results-lead">Stable invariants protect the model; documented source limits define the boundary of interpretation.</p>
+    </div>
+    <div class="grid-2" data-od-id="results-panels">
+      <div class="panel">
+        <h3>What is demonstrated</h3>
+        <ul>
+          <li>Reconciled, warehouse and OLAP layers run in PostgreSQL.</li>
+          <li>Stable integrity checks block invalid states.</li>
+          <li>Canonical exports connect every query to its visual output.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Documented limitations</h3>
+        <ul>
+          <li>Director nationality is unavailable in IMDb.</li>
+          <li>Production geography is film context, not company domicile.</li>
+          <li>Budget coverage limits the financial subset.</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="speaker-notes">Distinguish volatile snapshot counts from stable blocking invariants. State the production-context and director-nationality limitations without weakening the validated model.</aside>
+  </section>
+
+  <section class="slide hero light" data-screen-label="16 Conclusion" data-od-id="slide-conclusion" aria-hidden="true" inert>
+    <p class="eyebrow" data-od-id="conclusion-eyebrow">Three takeaways</p>
+    <h2 class="h-xl" data-od-id="conclusion-title">Reliable analysis starts before the query</h2>
+    <div class="grid-3" data-od-id="conclusion-panels">
+      <div class="panel">
+        <h3>Reconcile identity</h3>
+        <p>Join complementary sources through auditable IDs.</p>
+      </div>
+      <div class="panel">
+        <h3>Fix the grain</h3>
+        <p>Define what one fact row represents before aggregation.</p>
+      </div>
+      <div class="panel">
+        <h3>Deduplicate first</h3>
+        <p>Aggregate movie-level measures only at the target analytical level.</p>
+      </div>
+    </div>
+    <aside class="speaker-notes">Conclude the scope of the work: data integration, dimensional modeling and analytical querying are all covered in a single pipeline.</aside>
+  </section>
+
+  <section class="slide hero light center" data-screen-label="17 Thanks" data-od-id="slide-thanks" aria-hidden="true" inert>
+    <p class="eyebrow" data-od-id="thanks-eyebrow">Conclusion</p>
+    <h2 class="h-xl" data-od-id="thanks-title">Summary</h2>
+    <p class="lead" data-od-id="thanks-lead" style="margin-top: 24px; max-width: 56ch;">The project demonstrates a complete analytical pipeline — two heterogeneous sources, a reconciled integration layer, a dimensional star schema, and seven OLAP queries over the current fact snapshot.</p>
+     <span style="position: absolute; bottom: 24px; right: 40px; font-family: var(--font-display); font-size: 112px; font-weight: 800; color: var(--accent); opacity: 0.12; line-height: 1; pointer-events: none; letter-spacing: -0.03em;">thank you</span>
+    <aside class="speaker-notes">Watermark, bottom-right.</aside>
+  </section>
+  </div>
+
+  <nav id="nav-dots" aria-label="Slide navigation">
+    <div class="deck-counter" id="deck-counter" aria-live="polite" aria-atomic="true">1 / 17</div>
+    <div id="dots-row"></div>
+  </nav>
+
+  <dialog class="lightbox" id="lightbox" tabindex="-1" aria-labelledby="lightbox-title">
+    <h2 class="sr-only" id="lightbox-title">Enlarged visual</h2>
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close enlarged visual">&times;</button>
+    <img id="lightbox-img" alt="">
+  </dialog>
+
+  <script>
+    (function () {
+      var track    = document.getElementById('deck-track');
+      var slides   = document.querySelectorAll('.slide');
+      var counter  = document.getElementById('deck-counter');
+      var dotsRow  = document.getElementById('dots-row');
+      var KEY      = 'od-deck-pos';
+      var active   = 0;
+      var lightbox = document.getElementById('lightbox');
+      var lbClose = document.getElementById('lightbox-close');
+      var revealSlides = [
+        createReveal(3, '[data-od-id="slide-id-reconciliation"]', '.pipeline .step'),
+        createReveal(4, '[data-od-id="slide-reconciled-schema"]', '.grid-3 .panel'),
+        createReveal(6, '[data-od-id="slide-dimensional-model"]', '.diagram .box'),
+        createReveal(8, '[data-od-id="slide-star-schema"]', '.grid-3 .panel'),
+        createReveal(10, '[data-od-id="slide-fanout"]', '.grid-2 .panel')
+      ].filter(Boolean);
+      var dotCenters = [];
+      var dotScrubbing = false;
+
+      var dots = [];
+      for (var i = 0; i < slides.length; i++) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1) + ': ' + (slides[i].getAttribute('data-screen-label') || ''));
+        dotsRow.appendChild(dot);
+        dots.push(dot);
+        dot.addEventListener('click', (function(idx) {
+          return function () { jump(idx, true); };
+        })(i));
+      }
+
+      function cacheDotCenters() {
+        for (var i = 0; i < dots.length; i++) {
+          var rect = dots[i].getBoundingClientRect();
+          dotCenters[i] = rect.left + rect.width / 2;
+        }
+      }
+
+      function resetDotMagnification() {
+        for (var i = 0; i < dots.length; i++) {
+          var dot = dots[i];
+          dot.style.removeProperty('--dot-size');
+        }
+      }
+
+      function updateDotMagnification(pointerX) {
+        cacheDotCenters();
+        for (var i = 0; i < dots.length; i++) {
+          var dot = dots[i];
+          var distance = Math.abs(pointerX - dotCenters[i]);
+          var influence = Math.max(0, 1 - distance / 72);
+          var scale = 1 + Math.sqrt(influence) * 1.4;
+          dot.style.setProperty('--dot-size', Math.round(8 * scale) + 'px');
+        }
+      }
+
+      function selectDotFromPointer(pointerX) {
+        cacheDotCenters();
+        var closestIndex = 0;
+        var closestDistance = Infinity;
+        for (var i = 0; i < dots.length; i++) {
+          var distance = Math.abs(pointerX - dotCenters[i]);
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = i;
+          }
+        }
+        jump(closestIndex, true);
+      }
+
+      dotsRow.addEventListener('pointermove', function (e) {
+        updateDotMagnification(e.clientX);
+      });
+
+      dotsRow.addEventListener('pointerleave', function () {
+        if (!dotScrubbing) resetDotMagnification();
+      });
+
+      dotsRow.addEventListener('pointerdown', function (e) {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        dotScrubbing = true;
+        try { dotsRow.setPointerCapture(e.pointerId); } catch (_) {}
+        updateDotMagnification(e.clientX);
+        selectDotFromPointer(e.clientX);
+      });
+
+      document.addEventListener('pointermove', function (e) {
+        if (!dotScrubbing) return;
+        updateDotMagnification(e.clientX);
+        selectDotFromPointer(e.clientX);
+      });
+
+      document.addEventListener('pointerup', function (e) {
+        if (!dotScrubbing) return;
+        dotScrubbing = false;
+        selectDotFromPointer(e.clientX);
+        resetDotMagnification();
+        try { dotsRow.releasePointerCapture(e.pointerId); } catch (_) {}
+      });
+
+      function createReveal(index, slideSelector, itemSelector) {
+        var slide = document.querySelector(slideSelector);
+        if (!slide) return null;
+        return {
+          index: index,
+          slide: slide,
+          items: slide.querySelectorAll(itemSelector),
+          level: 0
+        };
+      }
+
+      function setRevealFaceHidden(face, hidden) {
+        if (!face) return;
+        face.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+        face.inert = hidden;
+        if (hidden) face.setAttribute('inert', '');
+        else face.removeAttribute('inert');
+      }
+
+      function updateReveal(config, level, animated) {
+        if (animated) config.slide.classList.add('anim-reveal');
+        else config.slide.classList.remove('anim-reveal');
+        void config.slide.offsetWidth;
+        config.level = level;
+        for (var i = 0; i < config.items.length; i++) {
+          var item = config.items[i];
+          var revealed = i < level;
+          item.classList.toggle('revealed', revealed);
+          setRevealFaceHidden(item.querySelector('.panel-compact'), revealed);
+          setRevealFaceHidden(item.querySelector('.panel-revealed'), !revealed);
+        }
+      }
+
+      function resetReveal(config) {
+        updateReveal(config, 0, false);
+      }
+
+      function revealForIndex(index) {
+        for (var i = 0; i < revealSlides.length; i++) {
+          if (revealSlides[i].index === index) return revealSlides[i];
+        }
+        return null;
+      }
+
+      function setActive(i) {
+        active = i;
+        if (counter) counter.textContent = (i + 1) + ' / ' + slides.length;
+        for (var s = 0; s < slides.length; s++) {
+          var isActive = s === i;
+          slides[s].setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          slides[s].inert = !isActive;
+          if (isActive) slides[s].removeAttribute('inert');
+          else slides[s].setAttribute('inert', '');
+        }
+        for (var j = 0; j < dots.length; j++) {
+          dots[j].className = 'nav-dot' + (j === i ? ' active' : '');
+          if (j === i) dots[j].setAttribute('aria-current', 'page');
+          else dots[j].removeAttribute('aria-current');
+        }
+        try { localStorage.setItem(KEY, String(i)); } catch (_) {}
+      }
+
+      function handleRevealNavigation(next) {
+        var config = revealForIndex(active);
+        if (!config) return false;
+        if (next > active && config.level < config.items.length) {
+          updateReveal(config, config.level + 1, true);
+          return true;
+        }
+        if (next < active && config.level > 0) {
+          updateReveal(config, config.level - 1, true);
+          return true;
+        }
+        return false;
+      }
+
+      function resetCurrentReveal() {
+        var config = revealForIndex(active);
+        if (config) resetReveal(config);
+      }
+
+      function prepareIncomingReveal(next, prevActive) {
+        var config = revealForIndex(next);
+        if (!config) return;
+        if (prevActive < next) resetReveal(config);
+        else updateReveal(config, config.items.length, false);
+      }
+
+      function moveTo(next, animated) {
+        var prevActive = active;
+        setActive(next);
+        prepareIncomingReveal(next, prevActive);
+        if (animated) {
+          track.classList.add('anim');
+          track.addEventListener('transitionend', function () {
+            track.classList.remove('anim');
+          }, { once: true });
+        } else {
+          track.classList.remove('anim');
+        }
+        track.style.transform = 'translateX(-' + (next * 100) + 'vw)';
+      }
+
+      function go(i, animated) {
+        if (animated === undefined) animated = true;
+        var next = Math.max(0, Math.min(slides.length - 1, i));
+        if (next === active) return;
+        if (handleRevealNavigation(next)) return;
+        resetCurrentReveal();
+        moveTo(next, animated);
+      }
+
+      function jump(i, animated) {
+        if (animated === undefined) animated = true;
+        var next = Math.max(0, Math.min(slides.length - 1, i));
+        if (next === active) { resetCurrentReveal(); return; }
+        resetCurrentReveal();
+        moveTo(next, animated);
+      }
+
+      function isInteractiveTarget(target) {
+        if (!target || typeof target.closest !== 'function') return false;
+        return Boolean(target.closest('button, [role="button"], a, select, textarea, input, [contenteditable="true"]'));
+      }
+
+      function isLightboxTrigger(target) {
+        if (!target || typeof target.closest !== 'function') return false;
+        return Boolean(target.closest('.zoom-frame img[role="button"]'));
+      }
+
+      function onKey(e) {
+        if (e.defaultPrevented) return;
+        if (lightbox && lightbox.open) {
+          if (e.key === ' ' || e.key === 'Spacebar') e.preventDefault();
+          return;
+        }
+        var t = e.target;
+        var lightboxTrigger = isLightboxTrigger(t);
+        if (isInteractiveTarget(t) && !lightboxTrigger) return;
+        if (lightboxTrigger && (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(active + 1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); go(active - 1); }
+        else if (e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(active + 1); }
+        else if (e.key === 'PageUp') { e.preventDefault(); go(active - 1); }
+        else if (e.key === 'Home') { e.preventDefault(); jump(0, true); }
+        else if (e.key === 'End') { e.preventDefault(); jump(slides.length - 1, true); }
+      }
+      window.addEventListener('keydown', onKey, true);
+
+      document.body.setAttribute('tabindex', '-1');
+      document.body.style.outline = 'none';
+      function focusDeck() { try { window.focus(); document.body.focus({ preventScroll: true }); } catch (_) {} }
+      document.addEventListener('mousedown', function (e) {
+        if (!isInteractiveTarget(e.target) && !(lightbox && lightbox.open)) focusDeck();
+      });
+      window.addEventListener('load', focusDeck);
+      focusDeck();
+
+      for (var r = 0; r < revealSlides.length; r++) {
+        resetReveal(revealSlides[r]);
+      }
+
+      try {
+        var saved = parseInt(localStorage.getItem(KEY) || '0', 10);
+        if (!isNaN(saved) && saved >= 0 && saved < slides.length) {
+          setActive(saved);
+          track.style.transform = 'translateX(-' + (saved * 100) + 'vw)';
+        } else {
+          setActive(0);
+        }
+      } catch (_) { setActive(0); }
+
+      if (lightbox && lbClose) {
+        var lbImg = document.getElementById('lightbox-img');
+        var lastFocused = null;
+
+        function openLightbox(img) {
+          if (!img) return;
+          lastFocused = img;
+          lbImg.src = img.src;
+          lbImg.alt = img.alt || '';
+          img.setAttribute('aria-expanded', 'true');
+          if (!lightbox.open) lightbox.showModal();
+          try { lightbox.focus({ preventScroll: true }); } catch (_) {}
+        }
+
+        function closeLightbox() {
+          if (lightbox.open) lightbox.close();
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
+        lightbox.addEventListener('cancel', function (e) {
+          e.preventDefault();
+          closeLightbox();
+        });
+        lightbox.addEventListener('keydown', function (e) {
+          if (e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); return; }
+          if (e.key !== 'Tab') return;
+          var focusable = lightbox.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+          if (!focusable.length) {
+            e.preventDefault();
+            return;
+          }
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        });
+        lightbox.addEventListener('close', function () {
+          if (lastFocused) {
+            lastFocused.setAttribute('aria-expanded', 'false');
+          }
+          lbImg.removeAttribute('src');
+          lbImg.alt = '';
+          lastFocused = null;
+          focusDeck();
+        });
+        document.querySelectorAll('.zoom-frame img').forEach(function (el) {
+          el.tabIndex = 0;
+          el.setAttribute('role', 'button');
+          el.setAttribute('aria-label', 'Open enlarged visual: ' + (el.alt || 'visual'));
+          el.setAttribute('aria-haspopup', 'dialog');
+          el.setAttribute('aria-controls', 'lightbox');
+          el.setAttribute('aria-expanded', 'false');
+          el.addEventListener('click', function () { openLightbox(this); });
+          el.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+              e.preventDefault();
+              openLightbox(this);
+            }
+          });
+        });
+      }
+    })();
+  </script>
+
+</body></html>

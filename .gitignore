@@ -1,0 +1,17 @@
+.DS_Store
+**/.DS_Store
+
+.env
+.env.*
+.venv/
+__pycache__/
+*.py[cod]
+
+data/raw/imdb/*
+!data/raw/imdb/.gitkeep
+data/raw/kaggle/*
+!data/raw/kaggle/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+tmp/

@@ -1,0 +1,4 @@
+size_band,avg_roi_pct,avg_rating,avg_budget_m,num_films
+Small (<10 film),548.17,6.51,31.6,3380
+Medium (10-50 film),463.68,6.54,40.5,2701
+Large (50+ film),413.22,6.55,38.6,3542

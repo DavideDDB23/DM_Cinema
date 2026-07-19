@@ -1,0 +1,11 @@
+# Canonical runtime: Python 3.11. This file lists direct, human-maintained inputs.
+pandas>=2.2,<3
+numpy>=1.24
+pyarrow>=14,<22
+psycopg2-binary>=2.9,<3
+sqlalchemy>=2,<3
+kaggle>=1.6,<2
+python-dotenv>=1,<2
+matplotlib>=3.8,<4
+seaborn>=0.13,<1
+jupyter>=1,<2
