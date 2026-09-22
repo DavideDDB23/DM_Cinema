@@ -1,6 +1,6 @@
 -- ============================================================
 -- FILE: sql/dw_ddl.sql
--- Data Warehouse (Layer 2) — Star Schema
+-- Data Warehouse (layer 3 of 3: raw → reconciled → warehouse; see README) — Star Schema
 -- Eseguire su DB cinema_dw prima di sql/etl_load.sql
 -- ============================================================
 

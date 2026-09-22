@@ -51,16 +51,18 @@ IMPORT FOREIGN SCHEMA public
 -- ============================================================
 -- 1. Carica dim_time
 -- ============================================================
--- Crea una riga per ogni anno di uscita distinto nel Reconciled Layer.
--- NOTA: IMDb e Kaggle forniscono solo l'anno (non il giorno/mese preciso).
--- day=1, month=1, quarter=1 sono valori stub — i livelli analiticamente
--- utili sono year → decade → era. Questa è una limitazione nota del dataset.
+-- Creates one row per distinct release year in the Reconciled Layer.
+-- NOTE: Year is the conformed temporal grain across both sources.
+-- IMDb provides only the release year; Kaggle ships a full release_date,
+-- intentionally reduced to year during cleaning (etl/02_clean_kaggle.py).
+-- day=1, month=1, quarter=1 are intentional stubs — the analytic levels
+-- are year → decade → era. Documented limitation (README).
 INSERT INTO dim_time (release_date, day, month, quarter, year, decade, era)
 SELECT DISTINCT
     MAKE_DATE(f.release_year, 1, 1)              AS release_date,
-    1                                             AS day,    -- stub: IMDb non fornisce giorno
-    1                                             AS month,  -- stub: IMDb non fornisce mese
-    1                                             AS quarter, -- stub: derivato da mese stub
+    1                                             AS day,    -- stub: year-only grain
+    1                                             AS month,  -- stub: year-only grain
+    1                                             AS quarter, -- stub: derived from stub month
     f.release_year                                AS year,
     (f.release_year / 10) * 10                   AS decade,
     CASE
@@ -143,7 +145,12 @@ SELECT continent, COUNT(*) FROM dim_production GROUP BY continent ORDER BY COUNT
 -- 4. Carica dim_director
 -- ============================================================
 -- Solo persone con role_type='director' nel Reconciled Layer
--- Mappa nationality → region
+-- INTENTIONAL VESTIGIAL MAPPING (nationality → region): person.nationality
+-- is never populated — IMDb name.basics has no nationality field
+-- (see etl/01_clean_imdb.py, etl/04_load_reconciled.py). The WHEN branches
+-- below are therefore unreachable and region is constantly 'Other'.
+-- Column reserved for future enrichment; limitation documented in README
+-- and slides.
 INSERT INTO dim_director (source_person_id, director_name, birth_year, nationality, region)
 SELECT DISTINCT
     p.person_id,
@@ -165,6 +172,7 @@ FROM person p
 JOIN film_role fr ON p.person_id = fr.person_id
 WHERE fr.role_type = 'director';
 
+-- Returns a single 'Other' region by design (vestigial mapping above).
 SELECT region, COUNT(*) FROM dim_director GROUP BY region ORDER BY COUNT(*) DESC;
 
 

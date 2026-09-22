@@ -5,13 +5,13 @@ PYTHON ?= .venv/bin/python
 help:
 	@echo "DataMan_Cinema — Makefile"
 	@echo ""
-	@echo "Target:"
-	@echo "  download           Scarica dataset raw IMDb + Kaggle"
-	@echo "  etl-reconciled     Pipeline completa Reconciled Layer (DDL → clean → reconcile → load)"
-	@echo "  etl-dw             Costruisce Data Warehouse (DDL → FDW → ETL)"
-	@echo "  olap               Esegue tutte le query OLAP + export CSV"
-	@echo "  all                Esecuzione end-to-end (download → olap)"
-	@echo "  clean              Rimuove dati raw/processed (mantiene .gitkeep)"
+	@echo "Targets:"
+	@echo "  download           Download raw IMDb + Kaggle datasets"
+	@echo "  etl-reconciled     Full Reconciled Layer pipeline (DDL → clean → reconcile → load)"
+	@echo "  etl-dw             Build the Data Warehouse (DDL → FDW → ETL)"
+	@echo "  olap               Run all OLAP queries and export CSVs"
+	@echo "  all                End-to-end run (download → olap)"
+	@echo "  clean              Remove raw/processed data (keeps .gitkeep)"
 
 download:
 	bash data/download_data.sh
@@ -35,4 +35,4 @@ all: etl-reconciled etl-dw olap
 clean:
 	rm -f data/raw/imdb/*.tsv data/raw/kaggle/*.csv data/raw/kaggle/*.json data/processed/*.parquet
 	touch data/raw/imdb/.gitkeep data/raw/kaggle/.gitkeep data/processed/.gitkeep
-	@echo "Pulito. I .gitkeep sono preservati."
+	@echo "Cleaned. .gitkeep files are preserved."

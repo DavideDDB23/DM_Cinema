@@ -1,6 +1,6 @@
 -- ============================================================
 -- FILE: sql/reconciled_ddl.sql
--- Reconciled Layer (Layer 1) — schema 3NF
+-- Reconciled Layer (layer 2 of 3: raw → reconciled → warehouse; see README) — schema 3NF
 -- Eseguire su DB cinema_reconciled prima di 04_load_reconciled.py
 -- Ordine rispetta dipendenze FK
 -- ============================================================

@@ -1237,9 +1237,10 @@
     </div>
     
     <div class="metric-row" data-od-id="overview-metrics" style="margin-top: 16px;">
-      <div class="metric"><strong>3</strong><span>layers: reconciled, warehouse, OLAP</span></div>
+      <div class="metric"><strong>3</strong><span>layers: raw → reconciled → warehouse</span></div>
       <div class="metric"><strong>45,431</strong><span>movies in the reconciled layer</span></div>
       <div class="metric"><strong>268,615</strong><span>fact rows in the warehouse</span></div>
+      <div class="metric"><strong>8.04</strong><span>fact rows per included film</span></div>
       <div class="metric"><strong>7</strong><span>OLAP queries; 3 use window functions</span></div>
     </div>
     
@@ -1285,7 +1286,7 @@
         <p class="eyebrow" data-od-id="reconciliation-eyebrow">Reconciled layer</p>
         <h2 class="h-xl" data-od-id="reconciliation-title">IDs first; matching only as fallback</h2>
       </div>
-      <p class="lead" data-od-id="reconciliation-lead"><strong>39,091</strong> rows resolve from a valid source IMDb ID; exact and fuzzy title matching are controlled fallbacks, and every outcome is audited.</p>
+      <p class="lead" data-od-id="reconciliation-lead"><strong>39,096</strong> films carry an accepted IMDb mapping — resolved via source ID first, with exact and fuzzy title matching as controlled fallbacks; every outcome is audited.</p>
     </div>
     <div class="pipeline" data-od-id="reconciliation-pipeline">
       <div class="step"><div class="step-track"><div class="panel-compact"><span class="nb">1</span></div><div class="panel-revealed"><span class="nb" aria-hidden="true">1</span><h3>Normalize source ID</h3><p>Canonicalize IMDb ID syntax and distinguish valid IDs from missing or invalid values.</p></div></div></div>
@@ -1309,7 +1310,7 @@
   <section class="slide dark" data-screen-label="05 Reconciled Schema" data-od-id="slide-reconciled-schema" aria-hidden="true" inert>
     <div class="topline">
       <div>
-        <p class="eyebrow" data-od-id="reconciled-eyebrow">Layer 1 · Reconciled</p>
+        <p class="eyebrow" data-od-id="reconciled-eyebrow">Layer 2 · Reconciled</p>
         <h2 class="h-xl" data-od-id="reconciled-title">Reconciled schema in third normal form</h2>
       </div>
       <p class="lead" data-od-id="reconciled-lead">A normalized hub integrates identity, financials, ratings and production roles while preserving source relationships before warehouse denormalization.</p>
@@ -1362,7 +1363,7 @@
       <div class="diagram" data-od-id="dfm-diagram">
         <div class="box"><div class="box-track"><div class="panel-compact" aria-hidden="false"><span class="nb">1</span></div><div class="panel-revealed" aria-hidden="true" inert><span class="nb" aria-hidden="true">1</span><h3>Choose analysis axes</h3>
           <ul>
-            <li><strong>Film</strong> is degenerate; <strong>Time</strong> is year → decade → era.</li>
+            <li><strong>Film</strong> is degenerate; <strong>Time</strong> is year → decade → era; day, month and quarter are unused stubs (=1).</li>
             <li><strong>Genre</strong>: genre → genre group.</li>
             <li><strong>ProductionContext</strong> branches to company and country → continent.</li>
             <li><strong>Director</strong> is flat; language → language family. Both are optional.</li>
@@ -1406,7 +1407,7 @@
   <section class="slide light" data-screen-label="09 Star Schema" data-od-id="slide-star-schema" aria-hidden="true" inert>
     <div class="topline">
       <div>
-        <p class="eyebrow" data-od-id="star-eyebrow">Layer 2 · Physical schema</p>
+        <p class="eyebrow" data-od-id="star-eyebrow">Layer 3 · Physical schema</p>
         <h2 class="h-xl" data-od-id="star-title">Star schema implementation</h2>
       </div>
       <p class="lead" data-od-id="star-lead">Denormalized dimensions keep roll-up, drill-down, slice and dice paths readable around <code>fact_film_performance</code>.</p>
@@ -1563,7 +1564,7 @@
       <div class="panel">
         <h3>What is demonstrated</h3>
         <ul>
-          <li>Reconciled, warehouse and OLAP layers run in PostgreSQL.</li>
+          <li>Reconciled and warehouse layers run in PostgreSQL; raw sources stay files, and OLAP queries run over the warehouse.</li>
           <li>Stable integrity checks block invalid states.</li>
           <li>Canonical exports connect every query to its visual output.</li>
         </ul>
